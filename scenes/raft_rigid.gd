@@ -4,7 +4,8 @@ extends RigidBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var forward_speed: float = 4.5
+var forward_speed: float = 130.
+var side_speed: float = 30.
 var direction: Vector3
 
 var box = preload("res://scenes/box.tscn")
@@ -54,23 +55,26 @@ func _physics_process(delta: float) -> void:
 		direction_impact.x -= 1
 	if Input.is_action_pressed("ui_down"):
 		direction_impact.z -= 0.3
-
+	
+	_camera_handle()
+	
 	direction = lerp(direction, direction_impact, 0.015)
 	var tilt: float = -direction.x * 90
-	$MeshInstance3D.rotation_degrees.z = tilt
-	$RaftCollision.rotation_degrees.z = tilt
+	rotation_degrees.z = tilt
+	
+	var velocity: Vector3 = Vector3(
+		direction.x * side_speed,
+		0,
+		direction.z * (-forward_speed)
+	)
+	apply_force(velocity, Vector3.ZERO)
 	
 	submerged = false
 	for p in probes:
 		var depth = water.get_height(p.global_position) - p.global_position.y 
 		if depth > 0:
 			submerged = true
-			var velocity: Vector3 = Vector3(
-				direction.x * SPEED,
-				float_force * gravity * depth,
-				direction.z * (-forward_speed)
-			)
-			apply_force(velocity, p.global_position - global_position)
+			apply_force(Vector3.UP * float_force * gravity * depth, p.global_position - global_position)
 
 
 func _camera_handle() -> void:
@@ -78,6 +82,7 @@ func _camera_handle() -> void:
 		$CameraController.rotate_y(deg_to_rad(-45))
 	if Input.is_action_just_pressed("cam_right"):
 		$CameraController.rotate_y(deg_to_rad(45))
+	print(position)
 	$CameraController.position = lerp($CameraController.position, position, 0.2)
 
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://csirgdxbgpsb3"]
+[gd_scene load_steps=9 format=3 uid="uid://csirgdxbgpsb3"]
 
 [ext_resource type="PackedScene" uid="uid://sfu3guvdlgpx" path="res://scenes/raft.tscn" id="1_014kd"]
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
 [ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="3_5xbjy"]
-[ext_resource type="PackedScene" uid="uid://c8djikwjm3x2w" path="res://scenes/box.tscn" id="3_rus8k"]
 [ext_resource type="ArrayMesh" uid="uid://dl6lij6x53hoc" path="res://assets/models/tree1.tres" id="4_4nkto"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_014kd"]
@@ -119,7 +118,3 @@ mesh = ExtResource("4_4nkto")
 [node name="Tree18" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 5.43963)
 mesh = ExtResource("4_4nkto")
-
-[node name="Box" parent="." instance=ExtResource("3_rus8k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0714661, -0.004352, 0.0413438)
-mass = 0.5
