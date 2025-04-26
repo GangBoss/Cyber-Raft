@@ -41,9 +41,9 @@ func _player_movement_and_rotation() -> void:
 	
 	var direction_impact: Vector3 = Vector3(0., 0., 1.)
 	if Input.is_action_pressed("ui_right"):
-		direction_impact.x += 1
-	if Input.is_action_pressed("ui_left"):
 		direction_impact.x -= 1
+	if Input.is_action_pressed("ui_left"):
+		direction_impact.x += 1
 	if Input.is_action_pressed("ui_down"):
 		direction_impact.z -= 0.3
 	
@@ -62,7 +62,7 @@ func _player_movement_and_rotation() -> void:
 		global_transform = global_transform.interpolate_with(_align_with_floor(Vector3.UP), 0.3)
 	
 	direction = lerp(direction, direction_impact, 0.015)
-	var tilt: float = -direction.x * 90
+	var tilt: float = direction.x * 90
 	$MeshInstance3D.rotation_degrees.z = tilt
 	$RaftCollision.rotation_degrees.z = tilt
 	
