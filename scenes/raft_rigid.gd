@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends RigidBody3D
 
 
 const SPEED = 5.0
@@ -8,6 +8,18 @@ var forward_speed: float = 4.5
 var direction: Vector3
 
 var box = preload("res://scenes/box.tscn")
+
+
+@export var float_force := 50.0
+@export var water_drag := 0.05
+@export var water_angular_drag := 0.05
+
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@export var water: MeshInstance3D
+
+@onready var probes = $Probes.get_children()
+
+var submerged := false
 
 
 func _align_with_floor(floor_normal: Vector3) -> Transform3D:
@@ -34,10 +46,7 @@ func _ready() -> void:
 	add_packet(1)
 
 
-func _player_movement_and_rotation() -> void:
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
+func _physics_process(delta: float) -> void:
 	var direction_impact: Vector3 = Vector3(0., 0., 1.)
 	if Input.is_action_pressed("ui_right"):
 		direction_impact.x += 1
@@ -45,35 +54,23 @@ func _player_movement_and_rotation() -> void:
 		direction_impact.x -= 1
 	if Input.is_action_pressed("ui_down"):
 		direction_impact.z -= 0.3
-	
-	# cheap player rotation
-	#if input_dir != Vector2(0, 0):
-		#$MeshInstance3D.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) + 75
-	
-	# floor alignment
-	$RayCast3D.position = position
-	if is_on_floor():
-		global_transform = global_transform.interpolate_with(
-			_align_with_floor($RayCast3D.get_collision_normal()),
-			0.3
-		)
-	elif not is_on_floor():
-		global_transform = global_transform.interpolate_with(_align_with_floor(Vector3.UP), 0.3)
-	
+
 	direction = lerp(direction, direction_impact, 0.015)
 	var tilt: float = -direction.x * 90
 	$MeshInstance3D.rotation_degrees.z = tilt
 	$RaftCollision.rotation_degrees.z = tilt
 	
-	# movement
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * (-forward_speed)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	move_and_slide()
+	submerged = false
+	for p in probes:
+		var depth = water.get_height(p.global_position) - p.global_position.y 
+		if depth > 0:
+			submerged = true
+			var velocity: Vector3 = Vector3(
+				direction.x * SPEED,
+				float_force * gravity * depth,
+				direction.z * (-forward_speed)
+			)
+			apply_force(velocity, p.global_position - global_position)
 
 
 func _camera_handle() -> void:
@@ -84,10 +81,7 @@ func _camera_handle() -> void:
 	$CameraController.position = lerp($CameraController.position, position, 0.2)
 
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	_player_movement_and_rotation()
-	_camera_handle()
+func _integrate_forces(state: PhysicsDirectBodyState3D):
+	if submerged:
+		state.linear_velocity *=  1 - water_drag
+		state.angular_velocity *= 1 - water_angular_drag 
