@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1mjkfm7gnvh2"]
+[gd_scene load_steps=15 format=3 uid="uid://1mjkfm7gnvh2"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
@@ -202,9 +202,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109318, 0, 0.303958)
 [node name="BoxPlaceholder6" type="Node3D" parent="BoxPlaceholders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14398, 0, 0.327954)
 
-[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_exited"]
-
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.999587, -0.0282531, -0.00533855, 0.00563329, 0.0103629, 0.99993, -0.0281958, -0.999547, 0.0105177, 0.297378, -0.184424, 1.00086)
 amount = 40
@@ -226,3 +223,6 @@ process_material = SubResource("ParticleProcessMaterial_sl03k")
 draw_passes = 2
 draw_pass_1 = SubResource("SphereMesh_12u0i")
 draw_pass_2 = SubResource("TorusMesh_hs5u7")
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_exited"]

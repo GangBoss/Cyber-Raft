@@ -32,6 +32,7 @@ var box_count = 0
 
 @export var box_node : Resource
 @onready var box_placeholders = $BoxPlaceholders.get_children()
+var cubes : Array[Node3D] 
 
 
 
@@ -63,12 +64,18 @@ func add_packet(name: String, pos: Vector3) -> void:
 	box.name = name
 	box.position = pos
 
+func add_cubes(count: int) -> void:
+	remove_cubes()
+	
+	var b_l = box_placeholders.size()
+	for i in range(count):
+		var level = i / b_l
+		var b = box_placeholders[i%b_l]
+		add_packet(str(i), b.global_position + Vector3.UP * .1 * level)
 
 func _ready() -> void:
-	var i = 0
-	for b in box_placeholders:
-		i+=1
-		add_packet(str(i), b.global_position)
+	add_cubes(100)
+
 
 
 func _player_movement_and_rotation() -> void:
@@ -172,9 +179,15 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	box_count += 1
+	cubes.append(body)
 	print(box_count)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	box_count -= 1
+	cubes.erase(body)
 	print(box_count)
+
+func remove_cubes() -> void:
+	for c in cubes:
+		c.queue_free()
