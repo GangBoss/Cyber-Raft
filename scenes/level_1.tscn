@@ -1,12 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://csirgdxbgpsb3"]
+[gd_scene load_steps=31 format=3 uid="uid://csirgdxbgpsb3"]
 
 [ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
-[ext_resource type="PackedScene" uid="uid://sfu3guvdlgpx" path="res://scenes/raft.tscn" id="1_014kd"]
+[ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
 [ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="3_5xbjy"]
 [ext_resource type="ArrayMesh" uid="uid://dl6lij6x53hoc" path="res://assets/models/trees/tree1.tres" id="4_4nkto"]
 [ext_resource type="Texture2D" uid="uid://bsegwk751omwl" path="res://assets/textures/particle.png" id="4_e3sih"]
 [ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="6_15mv3"]
+[ext_resource type="AudioStream" uid="uid://dtbvfs2i8wug1" path="res://audio/music/AudioChille2.mp3" id="6_fcfvj"]
 [ext_resource type="Shader" uid="uid://dwd1fb5lf5yuq" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="7_15mv3"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="8_15mv3"]
@@ -325,6 +326,9 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fcfvj")
 
 [connection signal="body_entered" from="Station1/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Station2/Area3D" to="." method="_on_area_3d_body_entered"]
