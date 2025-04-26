@@ -5,13 +5,13 @@ extends RigidBody3D
 @export var water_angular_drag := 0.05
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var water = get_node('/root/WaterTest/Water')
+@export var water: MeshInstance3D
 
-@onready var probes = $Probes.get_children()
+@onready var probes = $MeshInstance3D/Probes.get_children()
 
-@export var speed = 10.;
+@export var speed = -10.;
 @export var turn_speed = 10.;
-@export var turn_speed_down = 10;
+@export var turn_speed_down = 10.;
 
 var submerged := false
 
@@ -20,6 +20,8 @@ var direction:Vector3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_constant_force(Vector3.FORWARD * speed, Vector3.ZERO)
+	
 	pass # Replace with function body.
 
 
@@ -27,23 +29,15 @@ func _ready():
 func _process(delta):
 	direction = Vector3()
 	if Input.is_action_pressed("ui_right"):
-		direction.x += 1
-	if Input.is_action_pressed("ui_left"):
 		direction.x -= 1
-	if Input.is_action_just_pressed("ui_down"):
-		print("true")
-		freeze = true
-	if Input.is_action_just_released("ui_down"):
-		print("false")
-		freeze = false
+	if Input.is_action_pressed("ui_left"):
+		direction.x += 1
 
 
 func _physics_process(delta):
-	apply_force(Vector3.FORWARD * delta * speed, Vector3.ZERO)
 	if direction.x != 0:
-		print(direction.x)
-		apply_force(Vector3(direction*delta*turn_speed + Vector3.DOWN *delta*turn_speed_down),
-		 direction*2)
+		var force = direction*delta*turn_speed + Vector3.UP *delta*turn_speed_down
+		apply_force(force, -direction*5)
 	
 	submerged = false
 	for p in probes:

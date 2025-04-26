@@ -40,8 +40,8 @@ script = ExtResource("1_mcvr8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1279.0
-offset_bottom = 719.0
+offset_right = 640.0
+offset_bottom = 480.0
 texture = ExtResource("2_y1o0p")
 
 [node name="MainMenu" type="Control" parent="."]
@@ -53,28 +53,28 @@ script = SubResource("GDScript_e0arn")
 
 [node name="Play" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 189.0
-offset_right = 1014.0
-offset_bottom = 249.0
+offset_left = 420.0
+offset_top = 73.0
+offset_right = 569.0
+offset_bottom = 133.0
 theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 859.0
-offset_top = 293.0
-offset_right = 1021.0
-offset_bottom = 361.0
+offset_left = 410.0
+offset_top = 190.0
+offset_right = 572.0
+offset_bottom = 258.0
 theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 394.0
-offset_right = 1022.0
-offset_bottom = 472.0
+offset_left = 412.0
+offset_top = 291.0
+offset_right = 578.0
+offset_bottom = 369.0
 theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Quit"
 

@@ -19,10 +19,10 @@ func _process(delta: float) -> void:
 	
 func get_height(world_position: Vector3) -> float:
 	var uv_x = wrapf(world_position.x * wave_scale, 0, 1)
-	var uv_y = wrapf(world_position.y * wave_scale, 0, 1)
+	var uv_y = wrapf(world_position.z * wave_scale, 0, 1)
 	
 	var pixel_pos = Vector2(uv_x * noise.get_width(), uv_y * noise.get_height())
 	var noise_value = noise.get_pixelv(pixel_pos).r
-	return sin(world_position.x * 0.2 + global_position.y *0.2 + time + noise_value + 10.0 ) * wave_strength
+	return global_position.y + sin(world_position.x * 0.2 + global_position.z *0.2 + time + noise_value + 10.0 ) * wave_strength
 	
 	

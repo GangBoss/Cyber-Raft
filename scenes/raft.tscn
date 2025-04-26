@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sfu3guvdlgpx"]
+[gd_scene load_steps=10 format=3 uid="uid://1mjkfm7gnvh2"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
@@ -91,6 +91,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.405, 0.405),
 "update": 0,
 "values": [Vector3(-0.176579, 0.778399, 0.143867), Vector3(-0.118106, 2.1078e-16, -1.78882e-15)]
+}
+
+[sub_resource type="Animation" id="Animation_sl03k"]
+resource_name = "camera_on_dock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.329877),
+"update": 0,
+"values": [Vector3(-1.42109e-14, 1.11735, -0.0560725), Vector3(1.74368, 0.982035, -0.984261)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.329877),
+"update": 0,
+"values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15), Vector3(-0.176579, 0.778399, 0.143867)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12u0i"]
