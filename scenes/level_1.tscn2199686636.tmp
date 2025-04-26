@@ -1,0 +1,317 @@
+[gd_scene load_steps=28 format=3 uid="uid://csirgdxbgpsb3"]
+
+[ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
+[ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
+[ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="3_5xbjy"]
+[ext_resource type="ArrayMesh" uid="uid://dl6lij6x53hoc" path="res://assets/models/trees/tree1.tres" id="4_4nkto"]
+[ext_resource type="Texture2D" uid="uid://bsegwk751omwl" path="res://assets/textures/particle.png" id="4_e3sih"]
+[ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="6_2os1m"]
+[ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="6_15mv3"]
+[ext_resource type="AudioStream" uid="uid://dtbvfs2i8wug1" path="res://audio/music/AudioChille2.mp3" id="6_fcfvj"]
+[ext_resource type="Shader" uid="uid://dwd1fb5lf5yuq" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
+[ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="7_15mv3"]
+[ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="8_15mv3"]
+[ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="13_7gny6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3sih"]
+size = Vector3(0.414795, 1, 2.64502)
+
+[sub_resource type="Curve" id="Curve_2y5yt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220232, 1), 0.0, 0.0, 0, 0, Vector2(0.799789, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7s07"]
+curve = SubResource("Curve_2y5yt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2os1m"]
+emission_shape = 1
+emission_sphere_radius = 45.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_max = 0.3
+gravity = Vector3(0, -0.01, 0)
+scale_curve = SubResource("CurveTexture_i7s07")
+color = Color(1, 1, 1, 0.156863)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwx4m"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_e3sih")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_2y5yt"]
+material = SubResource("StandardMaterial3D_cwx4m")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2y5yt"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_2os1m"]
+material = SubResource("StandardMaterial3D_2y5yt")
+text = "1"
+font = ExtResource("6_2os1m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2os1m"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_go7sj"]
+material = SubResource("StandardMaterial3D_2os1m")
+text = "0
+"
+font = ExtResource("6_2os1m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2os1m"]
+render_priority = 0
+shader = ExtResource("7_2y5yt")
+shader_parameter/battery = 1.0
+shader_parameter/anchor = -0.858
+shader_parameter/speed_scale = 1.379
+shader_parameter/fov = 0.137
+shader_parameter/background_color = Vector4(0, 0.1, 0.2, 1)
+shader_parameter/grid_color = Vector4(1, 0.5, 1, 1)
+shader_parameter/side = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go7sj"]
+render_priority = 0
+shader = ExtResource("7_2y5yt")
+shader_parameter/battery = 0.284
+shader_parameter/anchor = 0.426
+shader_parameter/speed_scale = 1.379
+shader_parameter/fov = 1.0
+shader_parameter/background_color = Vector4(0, 0.1, 0.2, 1)
+shader_parameter/grid_color = Vector4(1, 0.5, 1, 1)
+shader_parameter/side = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pa8r4"]
+shader = ExtResource("7_15mv3")
+shader_parameter/vertJerkOpt = 0.0
+shader_parameter/vertMovementOpt = 0.0
+shader_parameter/bottomStaticOpt = 0.0
+shader_parameter/bottomStaticStrenth = 0.7
+shader_parameter/scalinesOpt = 0.8
+shader_parameter/rgbOffsetOpt = 0.2
+shader_parameter/horzFuzzOpt = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2y5yt"]
+shader = ExtResource("8_15mv3")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_4nkto")
+
+[node name="Environment" parent="." instance=ExtResource("13_7gny6")]
+
+[node name="Station1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
+mesh = ExtResource("3_5xbjy")
+
+[node name="Area3D" type="Area3D" parent="Station1"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Station1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119995, 0, -0.82251)
+shape = SubResource("BoxShape3D_e3sih")
+
+[node name="Station2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 21.5785)
+mesh = ExtResource("3_5xbjy")
+
+[node name="Area3D" type="Area3D" parent="Station2"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Station2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119995, 0, -0.82251)
+shape = SubResource("BoxShape3D_e3sih")
+
+[node name="Water" parent="." instance=ExtResource("2_bswci")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.92034, -0.371169, 40.8877)
+
+[node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_014kd")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.153963, 13.7443)
+water = NodePath("../Water")
+water_drag = 0.95
+
+[node name="Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_2os1m")
+draw_pass_1 = SubResource("QuadMesh_2y5yt")
+
+[node name="1Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_2os1m")
+draw_pass_1 = SubResource("TextMesh_2os1m")
+
+[node name="0Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_2os1m")
+draw_pass_1 = SubResource("TextMesh_go7sj")
+
+[node name="Obj" type="Node" parent="."]
+
+[node name="Tree1" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 15.7682)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree2" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 8.8018)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree3" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 3.95447)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree4" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 35.861)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree5" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 28.8946)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree6" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 24.0473)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree7" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 53.4366)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree8" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 46.4702)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree9" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 41.6229)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree10" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 53.4366)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree11" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 46.4702)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree12" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 41.6229)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree13" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 34.8975)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree14" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 27.9311)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree15" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 23.0838)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree16" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 17.2533)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree17" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 10.287)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree18" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 5.43963)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4352, -0.492244, 43.4324)
+material_override = SubResource("ShaderMaterial_2os1m")
+size = Vector3(44.5917, 1, 105.552)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5424, -0.492244, 43.4324)
+size = Vector3(50.7354, 1, 105.552)
+material = SubResource("ShaderMaterial_go7sj")
+
+[node name="Grain" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(323, 238)
+texture = ExtResource("6_15mv3")
+
+[node name="Effects" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy"]
+material = SubResource("ShaderMaterial_pa8r4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy2"]
+material = SubResource("ShaderMaterial_2y5yt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fcfvj")
+
+[connection signal="body_entered" from="Station1/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Station2/Area3D" to="." method="_on_area_3d_body_entered"]
