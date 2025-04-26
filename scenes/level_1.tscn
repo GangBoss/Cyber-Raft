@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://csirgdxbgpsb3"]
+
+[ext_resource type="PackedScene" uid="uid://sfu3guvdlgpx" path="res://scenes/raft2.tscn" id="1_014kd"]
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_014kd"]
+sky_top_color = Color(1.2514e-06, 0.489126, 0.661437, 1)
+sky_horizon_color = Color(0.76863, 0.775811, 0.787151, 1)
+
+[sub_resource type="Sky" id="Sky_bswci"]
+sky_material = SubResource("ProceduralSkyMaterial_014kd")
+
+[sub_resource type="Environment" id="Environment_rus8k"]
+background_mode = 2
+sky = SubResource("Sky_bswci")
+
+[node name="Level1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rus8k")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43182, -0.428467, -168.929)
+use_collision = true
+collision_layer = 2
+size = Vector3(7.76453, 0.143066, 341.102)
+
+[node name="Raft" parent="." instance=ExtResource("1_014kd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64322, -0.0686917, 0.516259)
+
+[node name="Water" parent="." instance=ExtResource("2_bswci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92034, -0.371169, -3.45809)
