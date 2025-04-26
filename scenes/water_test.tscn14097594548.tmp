@@ -27,9 +27,11 @@ distance = 10.0
 [node name="plane" type="RigidBody3D" parent="."]
 script = ExtResource("2_cqlem")
 float_force = 5.0
+water_drag = null
+water_angular_drag = null
 speed = 500.0
-turn_speed = 200.0
-turn_speed_down = 20
+turn_speed = null
+turn_speed_down = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="plane"]
 mesh = SubResource("BoxMesh_r1bon")

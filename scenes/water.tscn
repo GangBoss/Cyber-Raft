@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://b6ucqwthdvald" path="res://assets/models/water/water.gdshader" id="1_yvhtj"]
 [ext_resource type="Texture2D" uid="uid://bsji3udgfak3l" path="res://assets/models/water/water_tex.png" id="2_7wcun"]
-[ext_resource type="Script" path="res://assets/models/water/water.gd" id="3_p1n2c"]
+[ext_resource type="Script" uid="uid://kjvi0crkt0jw" path="res://assets/models/water/water.gd" id="3_p1n2c"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dcmoc"]
 
