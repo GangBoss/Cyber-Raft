@@ -28,8 +28,6 @@ distance = 10.0
 script = ExtResource("2_cqlem")
 float_force = 5.0
 speed = 500.0
-turn_speed = 200.0
-turn_speed_down = 20
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="plane"]
 mesh = SubResource("BoxMesh_r1bon")
@@ -57,68 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
 
 [node name="Probe6" type="Node3D" parent="plane/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
-
-[node name="plane2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11852, 2.6307, 11.2487)
-script = ExtResource("2_cqlem")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="plane2"]
-mesh = SubResource("BoxMesh_r1bon")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="plane2"]
-shape = SubResource("BoxShape3D_1lxn2")
-
-[node name="Probes" type="Node3D" parent="plane2"]
-
-[node name="Probe" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="Probe2" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.46032)
-
-[node name="Probe3" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2.46032)
-
-[node name="Probe4" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="Probe5" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
-
-[node name="Probe6" type="Node3D" parent="plane2/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
-
-[node name="plane3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.71578, 5.81885, 3.49823)
-script = ExtResource("2_cqlem")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="plane3"]
-mesh = SubResource("BoxMesh_r1bon")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="plane3"]
-shape = SubResource("BoxShape3D_1lxn2")
-
-[node name="Probes" type="Node3D" parent="plane3"]
-
-[node name="Probe" type="Node3D" parent="plane3/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="Probe2" type="Node3D" parent="plane3/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.46032)
-
-[node name="Probe3" type="Node3D" parent="plane3/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2.46032)
-
-[node name="Probe4" type="Node3D" parent="plane3/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="Probe5" type="Node3D" parent="plane3/Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
-
-[node name="Probe6" type="Node3D" parent="plane3/Probes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
