@@ -4,10 +4,18 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var forward_speed: float = 4.5
+@export var forward_speed: float = 2.5
 var direction: Vector3
 
 var box = preload("res://scenes/box.tscn")
+
+@export var water : MeshInstance3D
+@export var water_force = 10.
+@export var water_drag := 0.05
+@export var water_angular_drag := 0.05
+
+var submerged := false
+
 
 
 func move_camera_on_dock() -> void:
@@ -109,6 +117,13 @@ func _camera_handle() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	submerged = false
+	var depth = water.get_height(global_position) - global_position.y 
+	if depth > 0:
+		submerged = true
+		var vertical_velocity = Vector3.UP * depth * water_force
+		velocity += vertical_velocity
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -117,3 +132,9 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_camera_handle()
+
+func _integrate_forces(state: PhysicsDirectBodyState3D):
+	if submerged:
+		state.linear_velocity *=  1 - water_drag
+		state.angular_velocity *= 1 - water_angular_drag 
+	
