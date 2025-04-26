@@ -1,8 +1,3 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmcugw8jil3wm"]
-
-[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="1_wul0m"]
-[ext_resource type="Script" path="res://scenes/plane.gd" id="2_cqlem"]
-[ext_resource type="Script" path="res://scenes/camera_3d.gd" id="2_r1bon"]
 [gd_scene load_steps=6 format=3 uid="uid://cfka5j047q5dj"]
 
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="1_wul0m"]
@@ -85,5 +80,4 @@ shape = SubResource("BoxShape3D_r1bon")
 [node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("2_wul0m")]
 transform = Transform3D(4.06031, 0, 0, 0, 4.06031, 0, 0, 0, 4.06031, 0.366699, 0.751213, 0.165474)
 water = NodePath("../Water")
-water_force = 25.0
-water_drag = 0.4
+water_force = 1.0
