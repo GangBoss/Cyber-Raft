@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://xbw1tt68ugmy"]
+
+[ext_resource type="PackedScene" uid="uid://bmebw237rg5y2" path="res://assets/models/Enemys/ShipEnemy.glb" id="1_rdc2e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tv8cd"]
+size = Vector3(0.38147, 0.420074, 0.944824)
+
+[node name="EnemyShip" type="RigidBody3D"]
+
+[node name="ShipEnemy" parent="." instance=ExtResource("1_rdc2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00184536, -0.00261092, 0.00143659)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000544071, -0.0163492, -0.00447542)
+shape = SubResource("BoxShape3D_tv8cd")
