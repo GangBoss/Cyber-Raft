@@ -1,4 +1,3 @@
-[gd_resource type="AudioBusLayout" load_steps=0 format=3 uid="uid://dc5ttjlhfu6mq"]
+[gd_resource type="AudioBusLayout" format=3 uid="uid://0ts3h7a7qskg"]
 
 [resource]
-bus/0/send = &"Music"
