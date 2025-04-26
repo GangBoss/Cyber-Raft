@@ -317,3 +317,4 @@ stream = ExtResource("6_fcfvj")
 
 [connection signal="body_entered" from="Station1/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Station2/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
