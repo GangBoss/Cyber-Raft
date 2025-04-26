@@ -18,11 +18,12 @@ uniform sampler2D DepthTexture : hint_depth_texture;
 uniform float WaterOpacity = 1.0;
 uniform float FoamGlowIntensity = 0.5;
 uniform vec3 glowColor : source_color;
+uniform float wave_time;
 
 void vertex() {
     vec2 global_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
     float noise_value = texture(noise_texture, global_position * wave_scale).r;
-    float wave = sin(global_position.x * 0.2 + global_position.y * 0.2 + TIME + noise_value * 10.0) * wave_strength;
+    float wave = sin(global_position.x * 0.2 + global_position.y * 0.2 + wave_time + noise_value * 10.0) * wave_strength;
     VERTEX.y += wave;
 }
 
