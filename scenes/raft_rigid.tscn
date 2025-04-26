@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://sfu3guvdlgpx"]
+[gd_scene load_steps=6 format=3 uid="uid://rbxqnioyrbgw"]
 
-[ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
-[ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
+[ext_resource type="Script" uid="uid://8i5pe7unkgrj" path="res://scenes/raft_rigid.gd" id="1_qi1nb"]
+[ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="2_v82tl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kx21k"]
 size = Vector3(1, 0.3125, 1.59962)
@@ -12,13 +12,14 @@ size = Vector3(1, 0.57666, 0.0281982)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypqu2"]
 size = Vector3(0.646118, 0.57666, 0.0281982)
 
-[node name="Raft" type="CharacterBody3D"]
+[node name="RaftRigid" type="RigidBody3D"]
 collision_mask = 30
-script = ExtResource("1_wq7xe")
+script = ExtResource("1_qi1nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0157852, -2.38419e-07, -0.00862408)
-mesh = ExtResource("3_ypqu2")
+mesh = ExtResource("2_v82tl")
+skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 collision_mask = 30
@@ -42,10 +43,6 @@ shape = SubResource("BoxShape3D_ypqu2")
 [node name="BackwCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 transform = Transform3D(0.499993, -0.00094109, 0.0024829, 0.000929095, 0.499994, 0.00241343, -0.00248741, -0.00240878, 0.499988, 0.00377059, 0.106979, 0.34562)
 shape = SubResource("BoxShape3D_ypqu2")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-top_level = true
-collision_mask = 14
 
 [node name="CameraController" type="Node3D" parent="."]
 top_level = true
