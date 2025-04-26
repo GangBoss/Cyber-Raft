@@ -1,0 +1,13 @@
+class_name StatEnums
+
+enum BOAT {
+ SPEED,
+ MAX_HEALTH,
+ HP_REGEN,
+ ROTATION_SPEED
+}
+
+enum WORLD {
+ ENEMY_SPAWN_RATE,
+ OBSTICLE_SPAWN_RATE
+}

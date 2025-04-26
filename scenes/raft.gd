@@ -5,6 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 var forward_speed: float = 4.5
+var direction: Vector3
 
 
 func _align_with_floor(floor_normal: Vector3) -> Transform3D:
@@ -19,20 +20,26 @@ func set_forward_speed(speed: float):
 	forward_speed = speed
 
 
+func add_packet(index: int):
+	pass
+
+
 func _player_movement_and_rotation() -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	print(input_dir)
-	var direction: Vector3 = ($CameraController.transform.basis * Vector3(input_dir.x, 0, 1)).normalized()
-	print(direction)
+	var direction_impact: Vector3 = Vector3(0., 0., 1.)
+	if Input.is_action_pressed("ui_right"):
+		direction_impact.x += 1
+	if Input.is_action_pressed("ui_left"):
+		direction_impact.x -= 1
+	if Input.is_action_pressed("ui_down"):
+		direction_impact.z -= 0.3
 	
 	# cheap player rotation
 	#if input_dir != Vector2(0, 0):
-		#$MeshInstance3D.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) + 90
+		#$MeshInstance3D.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) + 75
 	
-
 	# floor alignment
 	$RayCast3D.position = position
 	if is_on_floor():
@@ -42,6 +49,12 @@ func _player_movement_and_rotation() -> void:
 		)
 	elif not is_on_floor():
 		global_transform = global_transform.interpolate_with(_align_with_floor(Vector3.UP), 0.3)
+	
+	direction = lerp(direction, direction_impact, 0.015)
+	print(direction)
+	var tilt: float = -direction.x * 90
+	print(rad_to_deg(tilt))
+	$MeshInstance3D.rotation_degrees.z = tilt
 	
 	# movement
 	if direction:

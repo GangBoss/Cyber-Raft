@@ -19,14 +19,14 @@ sky = SubResource("Sky_bswci")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rus8k")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43182, -0.428467, -168.929)
-use_collision = true
-collision_layer = 2
-size = Vector3(7.76453, 0.143066, 341.102)
-
 [node name="Raft" parent="." instance=ExtResource("1_014kd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64322, -0.0686917, 0.516259)
 
 [node name="Water" parent="." instance=ExtResource("2_bswci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92034, -0.371169, -3.45809)
+
+[node name="Water2" parent="." instance=ExtResource("2_bswci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92034, -0.371169, -103.389)
+
+[node name="Water3" parent="." instance=ExtResource("2_bswci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92034, -0.371169, -199.656)
