@@ -1,3 +1,8 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmcugw8jil3wm"]
+
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="1_wul0m"]
+[ext_resource type="Script" path="res://scenes/plane.gd" id="2_cqlem"]
+[ext_resource type="Script" path="res://scenes/camera_3d.gd" id="2_r1bon"]
 [gd_scene load_steps=6 format=3 uid="uid://cfka5j047q5dj"]
 
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="1_wul0m"]

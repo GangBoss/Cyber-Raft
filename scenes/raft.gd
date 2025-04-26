@@ -8,6 +8,11 @@ const JUMP_VELOCITY = 4.5
 var direction: Vector3
 
 var box = preload("res://scenes/box.tscn")
+@onready var anim: AnimationPlayer = $Anim
+
+
+#func apply_shake():
+	
 @onready var floor_point = $FloorPoint
 
 @export var water : MeshInstance3D
@@ -20,7 +25,13 @@ var submerged := false
 
 
 func move_camera_on_dock() -> void:
-	move_camera_on_dock()
+	anim.stop()
+	anim.play("camera_on_dock")
+
+
+func move_camera_on_raft() -> void:
+	anim.stop()
+	anim.play("camera_on_raft")
 
 
 func _align_with_floor(floor_normal: Vector3) -> Transform3D:

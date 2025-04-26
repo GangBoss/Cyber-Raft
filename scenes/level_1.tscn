@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="3_5xbjy"]
 [ext_resource type="ArrayMesh" uid="uid://dl6lij6x53hoc" path="res://assets/models/trees/tree1.tres" id="4_4nkto"]
 [ext_resource type="Texture2D" uid="uid://bsegwk751omwl" path="res://assets/textures/particle.png" id="4_e3sih"]
+[ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="6_2os1m"]
 [ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="6_15mv3"]
 [ext_resource type="AudioStream" uid="uid://dtbvfs2i8wug1" path="res://audio/music/AudioChille2.mp3" id="6_fcfvj"]
 [ext_resource type="Shader" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
@@ -15,6 +16,7 @@
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_014kd"]
 sky_top_color = Color(1.2514e-06, 0.489126, 0.661437, 1)
 sky_horizon_color = Color(0.76863, 0.775811, 0.787151, 1)
+energy_multiplier = 3.0
 
 [sub_resource type="Sky" id="Sky_5xbjy"]
 sky_material = SubResource("ProceduralSkyMaterial_014kd")
@@ -57,16 +59,13 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_cwx4m")
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="SystemFont" id="SystemFont_2y5yt"]
-subpixel_positioning = 0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2y5yt"]
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_2os1m"]
 material = SubResource("StandardMaterial3D_2y5yt")
 text = "1"
-font = SubResource("SystemFont_2y5yt")
+font = ExtResource("6_2os1m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2os1m"]
 albedo_color = Color(0, 1, 1, 1)
@@ -75,7 +74,7 @@ albedo_color = Color(0, 1, 1, 1)
 material = SubResource("StandardMaterial3D_2os1m")
 text = "0
 "
-font = SubResource("SystemFont_2y5yt")
+font = ExtResource("6_2os1m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2os1m"]
 render_priority = 0
@@ -116,7 +115,7 @@ shader_parameter/dithering = true
 shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 
-[node name="Level1" type="Node3D"]
+[node name="Level2" type="Node3D"]
 script = ExtResource("1_4nkto")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -155,6 +154,7 @@ water_force = 5.0
 
 [node name="Particles" type="GPUParticles3D" parent="Raft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
 amount = 120
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_2os1m")
@@ -162,6 +162,7 @@ draw_pass_1 = SubResource("QuadMesh_2y5yt")
 
 [node name="1Particles" type="GPUParticles3D" parent="Raft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
 amount = 120
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_2os1m")
@@ -169,6 +170,7 @@ draw_pass_1 = SubResource("TextMesh_2os1m")
 
 [node name="0Particles" type="GPUParticles3D" parent="Raft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
 amount = 120
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_2os1m")

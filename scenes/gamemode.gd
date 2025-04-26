@@ -16,7 +16,11 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("On station")
+	raft.move_camera_on_dock()
 	raft.set_forward_speed(0.0)
 	await get_tree().create_timer(10.0).timeout
-	raft.set_forward_speed(10.0)
+	
+	raft.move_camera_on_raft()
+	await get_tree().create_timer(1.0).timeout
+	raft.set_forward_speed(4.5)
 	#get_tree().change_scene("res://scenes/level_1.tscn")
