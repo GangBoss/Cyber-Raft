@@ -1,92 +1,51 @@
-[gd_scene load_steps=7 format=3 uid="uid://1mjkfm7gnvh2"]
+[gd_scene load_steps=6 format=3 uid="uid://sfu3guvdlgpx"]
 
-[ext_resource type="PackedScene" uid="uid://c8djikwjm3x2w" path="res://scenes/box.tscn" id="1_eekkm"]
+[ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
+[ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
 
-[sub_resource type="GDScript" id="GDScript_oe3no"]
-script/source = "extends CharacterBody3D
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx21k"]
+size = Vector3(1, 0.3125, 1.59962)
 
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
-
-func _align_with_floor(floor_normal: Vector3) -> Transform3D:
-	var xform: Transform3D = global_transform
-	xform.basis.y = floor_normal
-	xform.basis.x = -xform.basis.z.cross(floor_normal)
-	xform.basis = xform.basis.orthonormalized()
-	return xform
-
-
-func _player_movement_and_rotation() -> void:
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	var input_dir := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
-	var direction: Vector3 = ($CameraController.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	# cheap player rotation
-	if input_dir != Vector2(0, 0):
-		$MeshInstance3D.rotation_degrees.y = $CameraController.rotation_degrees.y - rad_to_deg(input_dir.angle()) + 90
-	
-	# floor alignment
-	$RayCast3D.position = position
-	if is_on_floor():
-		global_transform = global_transform.interpolate_with(
-			_align_with_floor($RayCast3D.get_collision_normal()),
-			0.3
-		)
-	elif not is_on_floor():
-		global_transform = global_transform.interpolate_with(_align_with_floor(Vector3.UP), 0.3)
-	
-	# movement
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	move_and_slide()
-
-
-func _camera_handle() -> void:
-	if Input.is_action_just_pressed(\"cam_left\"):
-		$CameraController.rotate_y(deg_to_rad(-45))
-	if Input.is_action_just_pressed(\"cam_right\"):
-		$CameraController.rotate_y(deg_to_rad(45))
-	$CameraController.position = lerp($CameraController.position, position, 0.2)
-
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	_player_movement_and_rotation()
-	_camera_handle()
-
-
-func _on_fall_zone_body_entered(body: Node3D) -> void:
-	get_tree().change_scene_to_file(\"res://level_1.tscn\")
-"
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eekkm"]
-data = PackedVector3Array(5.1822e-10, -0.34082, -0.043457, 0.0307287, -0.34082, -0.0307287, 0.0307287, 0.34082, -0.0307287, 0.043457, 0.34082, 0, 0.0307287, 0.34082, 0.0307287, 0, 0.34082, 0, 0.0307287, 0.34082, 0.0307287, 0.043457, 0.34082, 0, 0.043457, -0.34082, 0, 0.0307287, 0.34082, 0.0307287, -1.89957e-09, 0.34082, 0.043457, 0, 0.34082, 0, -1.89957e-09, 0.34082, 0.043457, 0.0307287, 0.34082, 0.0307287, 0.0307287, -0.34082, 0.0307287, 0.0307287, 0.34082, -0.0307287, 0.043457, 0.34082, 0, 0, 0.34082, 0, 0.043457, 0.34082, 0, 0.0307287, 0.34082, -0.0307287, 0.0307287, -0.34082, -0.0307287, 5.1822e-10, 0.34082, -0.043457, 0.0307287, 0.34082, -0.0307287, 0, 0.34082, 0, 0.0307287, 0.34082, -0.0307287, 5.1822e-10, 0.34082, -0.043457, 5.1822e-10, -0.34082, -0.043457, 0.043457, -0.34082, 0, 0.0307287, -0.34082, 0.0307287, 0.0307287, 0.34082, 0.0307287, -1.89957e-09, -0.34082, 0.043457, 0.0307287, -0.34082, 0.0307287, 0.043457, -0.34082, 0, 0.0307287, -0.34082, 0.0307287, -1.89957e-09, -0.34082, 0.043457, -1.89957e-09, 0.34082, 0.043457, -0.0307287, -0.34082, 0.0307287, -1.89957e-09, -0.34082, 0.043457, 0.043457, -0.34082, 0, 0.0307287, -0.34082, -0.0307287, 0.043457, -0.34082, 0, 0.043457, 0.34082, 0, 0.0307287, -0.34082, -0.0307287, 5.1822e-10, -0.34082, -0.043457, 0.043457, -0.34082, 0, -0.043457, -0.34082, -3.79913e-09, -0.0307287, -0.34082, -0.0307287, -0.0307287, 0.34082, -0.0307287, 5.1822e-10, -0.34082, -0.043457, -0.0307287, -0.34082, -0.0307287, 0.043457, -0.34082, 0, -1.89957e-09, 0.34082, 0.043457, -0.0307287, 0.34082, 0.0307287, 0, 0.34082, 0, -0.0307287, 0.34082, 0.0307287, -1.89957e-09, 0.34082, 0.043457, -1.89957e-09, -0.34082, 0.043457, -0.0307287, 0.34082, 0.0307287, -0.043457, 0.34082, -3.79913e-09, 0, 0.34082, 0, -0.043457, 0.34082, -3.79913e-09, -0.0307287, 0.34082, 0.0307287, -0.0307287, -0.34082, 0.0307287, -0.0307287, 0.34082, -0.0307287, 5.1822e-10, 0.34082, -0.043457, 0, 0.34082, 0, 5.1822e-10, 0.34082, -0.043457, -0.0307287, 0.34082, -0.0307287, -0.0307287, -0.34082, -0.0307287, -0.043457, 0.34082, -3.79913e-09, -0.0307287, 0.34082, -0.0307287, 0, 0.34082, 0, -0.0307287, 0.34082, -0.0307287, -0.043457, 0.34082, -3.79913e-09, -0.043457, -0.34082, -3.79913e-09, -1.89957e-09, -0.34082, 0.043457, -0.0307287, -0.34082, 0.0307287, -0.0307287, 0.34082, 0.0307287, -0.043457, -0.34082, -3.79913e-09, -0.0307287, -0.34082, 0.0307287, 0.043457, -0.34082, 0, -0.0307287, -0.34082, 0.0307287, -0.043457, -0.34082, -3.79913e-09, -0.043457, 0.34082, -3.79913e-09, -0.0307287, -0.34082, -0.0307287, 5.1822e-10, -0.34082, -0.043457, 5.1822e-10, 0.34082, -0.043457, -0.0307287, -0.34082, -0.0307287, -0.043457, -0.34082, -3.79913e-09, 0.043457, -0.34082, 0)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_oe3no"]
-size = Vector3(1, 0.144867, 0.627228)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eekkm"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq7xe"]
 size = Vector3(1, 0.57666, 0.0281982)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sl03k"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypqu2"]
 size = Vector3(0.646118, 0.57666, 0.0281982)
 
 [node name="Raft" type="CharacterBody3D"]
-script = SubResource("GDScript_oe3no")
+collision_mask = 30
+script = ExtResource("1_wq7xe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0157852, -2.38419e-07, -0.00862408)
+mesh = ExtResource("3_ypqu2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_mask = 30
+
+[node name="FloorCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00890423, -0.132477, 0.072342)
+shape = SubResource("BoxShape3D_kx21k")
+
+[node name="RightCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.00248288, -0.00094109, -0.499993, 0.00241343, 0.499994, -0.000929095, 0.499988, -0.00240878, 0.00248739, 0.156248, 0.106091, 0.101688)
+shape = SubResource("BoxShape3D_wq7xe")
+
+[node name="LeftCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.00248288, -0.00094109, -0.499993, 0.00241343, 0.499994, -0.000929095, 0.499988, -0.00240878, 0.00248739, -0.152107, 0.105518, 0.103222)
+shape = SubResource("BoxShape3D_wq7xe")
+
+[node name="ForwCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.499993, -0.00094109, 0.0024829, 0.000929095, 0.499994, 0.00241343, -0.00248741, -0.00240878, 0.499988, 0.00130724, 0.104585, -0.150441)
+shape = SubResource("BoxShape3D_ypqu2")
+
+[node name="BackwCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.499993, -0.00094109, 0.0024829, 0.000929095, 0.499994, 0.00241343, -0.00248741, -0.00240878, 0.499988, 0.00377059, 0.106979, 0.34562)
+shape = SubResource("BoxShape3D_ypqu2")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+collision_mask = 14
 
 [node name="CameraController" type="Node3D" parent="."]
 top_level = true
@@ -95,61 +54,29 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 0.980836, 0.194834, 0, -0.194834, 0.980836, 0, 1.19648, 5.56156)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666569, -7.45058e-09)
+transform = Transform3D(1, 0, 0, 0, 0.993034, 0.117832, 0, -0.117832, 0.993034, 0, 1.22309, -0.0353274)
 current = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015504, 0, -0.0138007)
-size = Vector3(1, 0.140747, 0.601517)
+[node name="RaftCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00890423, -0.132477, 0.072342)
+shape = SubResource("BoxShape3D_kx21k")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00416343, 0.39838, 0.122873)
-radius = 0.043457
-height = 0.681641
+[node name="Probes" type="Node3D" parent="."]
 
-[node name="Area3D" type="Area3D" parent="CSGCylinder3D"]
+[node name="Probe" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.149049)
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="CSGCylinder3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_eekkm")
+[node name="Probe6" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.407467, -0.197042, 0.149049)
 
-[node name="FloorCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00798138, -0.00315857, -0.0138007)
-shape = SubResource("BoxShape3D_oe3no")
+[node name="Probe2" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, -0.507598)
 
-[node name="RightCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.328465, 0.21167, -0.0138007)
-shape = SubResource("BoxShape3D_eekkm")
+[node name="Probe5" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40102, -0.197042, -0.507598)
 
-[node name="LeftCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.288253, 0.21167, -0.0138007)
-shape = SubResource("BoxShape3D_eekkm")
+[node name="Probe3" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.866678)
 
-[node name="ForwCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0210905, 0.21167, -0.519601)
-shape = SubResource("BoxShape3D_sl03k")
-
-[node name="BackwCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0210904, 0.21167, 0.472545)
-shape = SubResource("BoxShape3D_sl03k")
-
-[node name="Boxes" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.015504, 0, -0.0138007)
-
-[node name="Box" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.19214, 0.455365, 0.0842802)
-
-[node name="Box2" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.19214, 0.455365, -0.0675777)
-
-[node name="Box4" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0652223, 0.455365, -0.0675777)
-
-[node name="Box5" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0652223, 0.455365, -0.211724)
-
-[node name="Box6" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0652223, 0.455365, 0.0832178)
-
-[node name="Box3" parent="Boxes" instance=ExtResource("1_eekkm")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.19214, 0.455365, -0.212106)
+[node name="Probe4" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378621, -0.197042, 0.880479)

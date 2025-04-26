@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://rbxqnioyrbgw"]
+
+[ext_resource type="Script" uid="uid://8i5pe7unkgrj" path="res://scenes/raft_rigid.gd" id="1_qi1nb"]
+[ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="2_v82tl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx21k"]
+size = Vector3(1, 0.3125, 1.59962)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq7xe"]
+size = Vector3(1, 0.57666, 0.0281982)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypqu2"]
+size = Vector3(0.646118, 0.57666, 0.0281982)
+
+[node name="RaftRigid" type="RigidBody3D"]
+collision_mask = 30
+script = ExtResource("1_qi1nb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0157852, -2.38419e-07, -0.00862408)
+mesh = ExtResource("2_v82tl")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_mask = 30
+
+[node name="FloorCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00890423, -0.132477, 0.072342)
+shape = SubResource("BoxShape3D_kx21k")
+
+[node name="RightCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.00248288, -0.00094109, -0.499993, 0.00241343, 0.499994, -0.000929095, 0.499988, -0.00240878, 0.00248739, 0.156248, 0.106091, 0.101688)
+shape = SubResource("BoxShape3D_wq7xe")
+
+[node name="LeftCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.00248288, -0.00094109, -0.499993, 0.00241343, 0.499994, -0.000929095, 0.499988, -0.00240878, 0.00248739, -0.152107, 0.105518, 0.103222)
+shape = SubResource("BoxShape3D_wq7xe")
+
+[node name="ForwCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.499993, -0.00094109, 0.0024829, 0.000929095, 0.499994, 0.00241343, -0.00248741, -0.00240878, 0.499988, 0.00130724, 0.104585, -0.150441)
+shape = SubResource("BoxShape3D_ypqu2")
+
+[node name="BackwCol" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.499993, -0.00094109, 0.0024829, 0.000929095, 0.499994, 0.00241343, -0.00248741, -0.00240878, 0.499988, 0.00377059, 0.106979, 0.34562)
+shape = SubResource("BoxShape3D_ypqu2")
+
+[node name="CameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="CameraTarget" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.980836, 0.194834, 0, -0.194834, 0.980836, 0, 1.19648, 5.56156)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 0.993034, 0.117832, 0, -0.117832, 0.993034, 0, 1.22309, -0.0353274)
+current = true
+
+[node name="RaftCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00890423, -0.132477, 0.072342)
+shape = SubResource("BoxShape3D_kx21k")
+
+[node name="Probes" type="Node3D" parent="."]
+
+[node name="Probe" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.149049)
+
+[node name="Probe6" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.407467, -0.197042, 0.149049)
+
+[node name="Probe2" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, -0.507598)
+
+[node name="Probe5" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40102, -0.197042, -0.507598)
+
+[node name="Probe3" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.866678)
+
+[node name="Probe4" type="Node3D" parent="Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378621, -0.197042, 0.880479)

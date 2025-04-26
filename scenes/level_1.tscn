@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://csirgdxbgpsb3"]
+
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
+[ext_resource type="PackedScene" uid="uid://rbxqnioyrbgw" path="res://scenes/raft_rigid.tscn" id="3_5xbjy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_014kd"]
+sky_top_color = Color(1.2514e-06, 0.489126, 0.661437, 1)
+sky_horizon_color = Color(0.76863, 0.775811, 0.787151, 1)
+
+[sub_resource type="Sky" id="Sky_bswci"]
+sky_material = SubResource("ProceduralSkyMaterial_014kd")
+
+[sub_resource type="Environment" id="Environment_rus8k"]
+background_mode = 2
+sky = SubResource("Sky_bswci")
+
+[node name="Level1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rus8k")
+
+[node name="Water" parent="." instance=ExtResource("2_bswci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92034, -0.371169, -3.45809)
+
+[node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("3_5xbjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40064, -0.222274, 0.668253)
+mass = 2.0
+water_drag = 0.9
+water = NodePath("../Water")
