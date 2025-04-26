@@ -14,7 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://dthl2ydu8x4ra" path="res://scenes/levels/Level1/Splatmap_0_0_0.res" id="11_025c5"]
 [ext_resource type="Texture2D" uid="uid://wx63hb2qd70v" path="res://scenes/levels/Level1/Water_0_0.res" id="11_igeo0"]
 [ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="11_nm6kf"]
-[ext_resource type="PackedScene" path="res://assets/models/trees/iva_tree/wood_iva.tscn" id="12_5ol6i"]
+[ext_resource type="PackedScene" uid="uid://cs0qdol1p5hcg" path="res://assets/models/trees/keney/tree_blocks_fall.glb" id="11_t0wv7"]
+[ext_resource type="PackedScene" uid="uid://cxsw3fmg1106y" path="res://assets/models/trees/keney/tree_cone.glb" id="12_4wk3n"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="12_y71nm"]
 [ext_resource type="Texture2D" uid="uid://p4jg7ves6c4p" path="res://scenes/levels/Level1/Heightmap_0_-1.res" id="13_6d4iq"]
 [ext_resource type="PackedScene" uid="uid://b3st28m6f5a81" path="res://assets/models/trees/keney/tree_cone_dark.glb" id="13_m83us"]
@@ -128,7 +129,7 @@ ObjectFrequency = -1
 RandomRange = 1.0
 NoiseTexture = SubResource("NoiseTexture2D_2448u")
 RandomYRotation = false
-ObjectScenes = [ExtResource("10_nm6kf")]
+ObjectScenes = [ExtResource("9_uy6wj"), ExtResource("10_bv1fb"), ExtResource("11_t0wv7"), ExtResource("12_4wk3n"), ExtResource("13_m83us"), ExtResource("14_7ntxy"), ExtResource("15_4u2mj"), ExtResource("16_b1buk"), ExtResource("17_aq7hc"), ExtResource("18_fm2x2"), ExtResource("19_0hyvm"), ExtResource("20_knu8n"), ExtResource("21_ll3gq"), ExtResource("22_c3aos"), ExtResource("23_o4ntr"), ExtResource("24_qc1mu"), ExtResource("25_o2ohm"), ExtResource("26_u14cl"), ExtResource("27_tgvfk"), ExtResource("28_640vl"), ExtResource("29_v0x0p"), ExtResource("30_qwjje"), ExtResource("31_kl7eu"), ExtResource("32_gfi0k"), ExtResource("33_irj1v"), ExtResource("34_737wg"), ExtResource("35_dgdww"), ExtResource("36_4ab1b"), ExtResource("37_ujlec"), ExtResource("38_ylmil"), ExtResource("39_8r1u5"), ExtResource("40_tieco"), ExtResource("41_3wbt5"), ExtResource("42_bgw5g"), ExtResource("43_385u6"), ExtResource("44_ca5p1"), ExtResource("45_s52u4"), ExtResource("46_4l340"), ExtResource("47_sgsa6"), ExtResource("48_yn0cb"), ExtResource("49_f6pt6"), ExtResource("50_17x4d"), ExtResource("51_hutp8"), ExtResource("52_egisn"), ExtResource("53_dj5ow"), ExtResource("54_kh18n"), ExtResource("55_i0i7d"), ExtResource("56_2vb5u"), ExtResource("57_p5nfa"), ExtResource("58_mfjdh"), ExtResource("59_kv4yh"), ExtResource("60_e46iv"), ExtResource("61_57xh8"), ExtResource("62_ucm6f"), ExtResource("63_vfalo"), ExtResource("64_k1biw"), ExtResource("65_us3e0"), ExtResource("66_eryen"), ExtResource("67_rplkk"), ExtResource("68_5papr"), ExtResource("69_0234c")]
 LODList = []
 LODMeshes = []
 UpdateDistanceThreshold = 1.0
@@ -141,87 +142,6 @@ script = ExtResource("11_nm6kf")
 Definition = SubResource("Resource_70saq")
 Hide = false
 metadata/_custom_type_script = "uid://comabiqrwe5u0"
-
-[sub_resource type="Gradient" id="Gradient_2poe7"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nbo2r"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2s8vu"]
-color_ramp = SubResource("Gradient_2poe7")
-noise = SubResource("FastNoiseLite_nbo2r")
-
-[sub_resource type="Resource" id="Resource_2drfn"]
-script = ExtResource("10_qg8x4")
-Strategy = 1
-ObjectFrequency = -1
-RandomRange = 1.0
-NoiseTexture = SubResource("NoiseTexture2D_2s8vu")
-RandomYRotation = false
-ObjectScenes = [ExtResource("12_5ol6i")]
-LODList = []
-LODMeshes = []
-UpdateDistanceThreshold = 1.0
-UpdateTimeFrequency = 0.1
-VisualInstanceLayers = 1
-metadata/_custom_type_script = "uid://cgf61yxk46wa4"
-
-[sub_resource type="Resource" id="Resource_2463x"]
-script = ExtResource("11_nm6kf")
-Definition = SubResource("Resource_2drfn")
-Hide = false
-metadata/_custom_type_script = "uid://comabiqrwe5u0"
-
-[sub_resource type="Gradient" id="Gradient_ldpak"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_iaxgp"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sue3i"]
-color_ramp = SubResource("Gradient_ldpak")
-noise = SubResource("FastNoiseLite_iaxgp")
-
-[sub_resource type="Resource" id="Resource_pvcyv"]
-script = ExtResource("10_qg8x4")
-Strategy = 1
-ObjectFrequency = -1
-RandomRange = 1.0
-NoiseTexture = SubResource("NoiseTexture2D_sue3i")
-RandomYRotation = false
-ObjectScenes = [ExtResource("13_nimoc")]
-LODList = []
-LODMeshes = []
-UpdateDistanceThreshold = 1.0
-UpdateTimeFrequency = 0.1
-VisualInstanceLayers = 1
-metadata/_custom_type_script = "uid://cgf61yxk46wa4"
-
-[sub_resource type="Resource" id="Resource_u0me6"]
-script = ExtResource("11_nm6kf")
-Definition = SubResource("Resource_pvcyv")
-Hide = false
-metadata/_custom_type_script = "uid://comabiqrwe5u0"
-
-[sub_resource type="Resource" id="Resource_71yoy"]
-script = ExtResource("9_07dy8")
-WaterFactor = 1.0
-WaterInnerOffset = 0.2
-WaterColor = Color(0.176471, 1, 1, 1)
-WaterFresnelColor = Color(1, 1, 1, 1)
-WaterMetallic = 0.0
-WaterRoughness = 0.0
-WaterTimeScale = 0.1
-WaterStrength = 0.4
-WaterNoiseScale = 10.0
-WaterHeightScale = 0.15
-WaterColorDeep = Color(1, 1, 1, 1)
-WaterColorShallow = Color(1, 1, 1, 1)
-WaterBeersLaw = 2.0
-WaterDepthOffset = -0.75
-WaterEdgeScale = 0.1
-WaterNear = 0.5
-WaterFar = 100.0
-WaterEdgeColor = Color(1, 1, 1, 1)
-VisualInstanceLayers = 1
-metadata/_custom_type_script = "uid://k2tvfxm6feg5"
 
 [sub_resource type="Resource" id="Resource_u1mjy"]
 script = ExtResource("12_y71nm")
@@ -328,7 +248,3 @@ skeleton = NodePath("../..")
 [node name="Water8" parent="Node3D" instance=ExtResource("40_88m6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -622.941)
 skeleton = NodePath("../..")
-
-[node name="Raft2" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_6gwlt")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.1433, 13.3568, 15.6772)
-water = NodePath("../Node3D/Water")
