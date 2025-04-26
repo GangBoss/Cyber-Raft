@@ -12,33 +12,6 @@ size = Vector3(1, 0.57666, 0.0281982)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypqu2"]
 size = Vector3(0.646118, 0.57666, 0.0281982)
 
-[sub_resource type="Animation" id="Animation_sl03k"]
-resource_name = "camera_on_dock"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(0.406126, 0.329877),
-"update": 0,
-"values": [Vector3(-1.42109e-14, 1.11735, -0.0560725), Vector3(1.74368, 0.982035, -0.984261)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(0.406126, 0.329877),
-"update": 0,
-"values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15), Vector3(-0.176579, 0.778399, 0.143867)]
-}
-
 [sub_resource type="Animation" id="Animation_12u0i"]
 length = 0.001
 tracks/0/type = "value"
@@ -66,14 +39,65 @@ tracks/1/keys = {
 "values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15)]
 }
 
+[sub_resource type="Animation" id="Animation_sl03k"]
+resource_name = "camera_on_dock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.405),
+"update": 0,
+"values": [Vector3(-1.42109e-14, 1.11735, -0.0560725), Vector3(1.74368, 0.982035, -0.984261)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.405),
+"update": 0,
+"values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15), Vector3(-0.176579, 0.778399, 0.143867)]
+}
+
 [sub_resource type="Animation" id="Animation_rakhh"]
-resource_name = "camera_on_boat"
+resource_name = "camera_on_raft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.405, 0.405),
+"update": 0,
+"values": [Vector3(1.74368, 0.982035, -0.984261), Vector3(-1.42109e-14, 1.11735, -0.0560725)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.405, 0.405),
+"update": 0,
+"values": [Vector3(-0.176579, 0.778399, 0.143867), Vector3(-0.118106, 2.1078e-16, -1.78882e-15)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12u0i"]
 _data = {
 &"RESET": SubResource("Animation_12u0i"),
-&"camera_on_boat": SubResource("Animation_rakhh"),
-&"camera_on_dock": SubResource("Animation_sl03k")
+&"camera_on_dock": SubResource("Animation_sl03k"),
+&"camera_on_raft": SubResource("Animation_rakhh")
 }
 
 [node name="Raft" type="CharacterBody3D"]
@@ -118,7 +142,7 @@ top_level = true
 transform = Transform3D(-1, -1.69805e-08, 8.57578e-08, 0, 0.980955, 0.194234, -8.74228e-08, 0.194234, -0.980955, 9.19525e-08, 0.786674, -3.52443)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
-transform = Transform3D(1, 1.76398e-15, 2.09312e-16, -1.77636e-15, 0.993034, 0.117832, 1.32349e-22, -0.117832, 0.993034, -1.42109e-14, 1.11735, -0.0560725)
+transform = Transform3D(1, 1.76398e-15, 2.09312e-16, -1.77636e-15, 0.993034, 0.117832, -4.36751e-22, -0.117832, 0.993034, -1.42109e-14, 1.11735, -0.0560725)
 current = true
 
 [node name="RaftCollision" type="CollisionShape3D" parent="."]

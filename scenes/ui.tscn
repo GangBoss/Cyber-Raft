@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dow1gob53q0wu"]
+[gd_scene load_steps=3 format=3 uid="uid://dow1gob53q0wu"]
+
+[ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://jsxkn41s1tq7" path="res://scenes/ui.gd" id="1_x4jx1"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -7,3 +10,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x4jx1")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.215625
+anchor_top = 0.06875
+anchor_right = 0.834375
+anchor_bottom = 0.164583
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_nt7q6")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][color=#FF0000]Network Packet Lost[/color][/shake]"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.210938
+anchor_top = 0.252083
+anchor_right = 0.829687
+anchor_bottom = 0.347917
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_nt7q6")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[tornado radius=3.0 freq=4.0 connected=1][color=#FF00FF]Sample Text.[/color][/tornado]"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214062
+anchor_top = 0.25625
+anchor_right = 0.832812
+anchor_bottom = 0.34375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_nt7q6")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[tornado radius=3.0 freq=4.0 connected=1][color=#00FFFF]Sample Text.[/color][/tornado]"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
