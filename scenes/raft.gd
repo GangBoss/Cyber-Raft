@@ -29,9 +29,10 @@ func add_packet(index: int) -> void:
 	box.position = position + Vector3(0., 100., 0.)
 
 
-func _ready() -> void:
-	print("added")
-	add_packet(1)
+#func _ready() -> void:
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#print("added")
+	#add_packet(1)
 
 
 func _player_movement_and_rotation() -> void:
@@ -40,9 +41,9 @@ func _player_movement_and_rotation() -> void:
 	
 	var direction_impact: Vector3 = Vector3(0., 0., 1.)
 	if Input.is_action_pressed("ui_right"):
-		direction_impact.x += 1
-	if Input.is_action_pressed("ui_left"):
 		direction_impact.x -= 1
+	if Input.is_action_pressed("ui_left"):
+		direction_impact.x += 1
 	if Input.is_action_pressed("ui_down"):
 		direction_impact.z -= 0.3
 	
@@ -61,14 +62,14 @@ func _player_movement_and_rotation() -> void:
 		global_transform = global_transform.interpolate_with(_align_with_floor(Vector3.UP), 0.3)
 	
 	direction = lerp(direction, direction_impact, 0.015)
-	var tilt: float = -direction.x * 90
+	var tilt: float = direction.x * 90
 	$MeshInstance3D.rotation_degrees.z = tilt
 	$RaftCollision.rotation_degrees.z = tilt
 	
 	# movement
 	if direction:
 		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * (-forward_speed)
+		velocity.z = direction.z * (forward_speed)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -76,12 +77,30 @@ func _player_movement_and_rotation() -> void:
 	move_and_slide()
 
 
+# Sensitivity of the mouse movement
+var sensitivity: float = 0.1
+# Limits for rotation
+var min_rotation_x: float = -30.0
+var max_rotation_x: float = 30.0
+
+# Store the current rotation
+var rotation_x: float = 0.0
+var rotation_y: float = 0.0
+
 func _camera_handle() -> void:
 	if Input.is_action_just_pressed("cam_left"):
 		$CameraController.rotate_y(deg_to_rad(-45))
 	if Input.is_action_just_pressed("cam_right"):
 		$CameraController.rotate_y(deg_to_rad(45))
 	$CameraController.position = lerp($CameraController.position, position, 0.2)
+	
+	#var mouse_movement = Input.get_mouse_motion()
+	#rotation_x -= mouse_movement.y * sensitivity
+	#rotation_x = clamp(rotation_x, min_rotation_x, max_rotation_x)
+	#rotation_degrees.x = rotation_x
+	#rotation_degrees.y = rotation_y
+	#var camera_offset = Vector3(0, 0, -10)  # Move the camera back
+	#global_transform.origin = camera_offset.rotated(Vector3.UP, rotation_y)
 
 
 func _physics_process(delta: float) -> void:
@@ -90,4 +109,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	_player_movement_and_rotation()
+
+
+func _process(delta: float) -> void:
 	_camera_handle()
