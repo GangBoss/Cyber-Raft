@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmcugw8jil3wm"]
+[gd_scene load_steps=8 format=3 uid="uid://bmcugw8jil3wm"]
 
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="1_wul0m"]
 [ext_resource type="Script" path="res://scenes/plane.gd" id="2_cqlem"]
@@ -8,6 +8,17 @@ size = Vector3(2, 0.5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1lxn2"]
 size = Vector3(2, 0.5, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wul0m"]
+sky_top_color = Color(1.2514e-06, 0.489126, 0.661437, 1)
+sky_horizon_color = Color(0.76863, 0.775811, 0.787151, 1)
+
+[sub_resource type="Sky" id="Sky_bswci"]
+sky_material = SubResource("ProceduralSkyMaterial_wul0m")
+
+[sub_resource type="Environment" id="Environment_cqlem"]
+background_mode = 2
+sky = SubResource("Sky_bswci")
 
 [node name="WaterTest" type="Node3D"]
 
@@ -43,5 +54,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
 [node name="Probe6" type="Node3D" parent="plane/Probes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
 
+[node name="plane2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11852, 2.6307, 11.2487)
+script = ExtResource("2_cqlem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane2"]
+mesh = SubResource("BoxMesh_r1bon")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plane2"]
+shape = SubResource("BoxShape3D_1lxn2")
+
+[node name="Probes" type="Node3D" parent="plane2"]
+
+[node name="Probe" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Probe2" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.46032)
+
+[node name="Probe3" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2.46032)
+
+[node name="Probe4" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Probe5" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
+
+[node name="Probe6" type="Node3D" parent="plane2/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
+
+[node name="plane3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.71578, 5.81885, 3.49823)
+script = ExtResource("2_cqlem")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane3"]
+mesh = SubResource("BoxMesh_r1bon")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plane3"]
+shape = SubResource("BoxShape3D_1lxn2")
+
+[node name="Probes" type="Node3D" parent="plane3"]
+
+[node name="Probe" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Probe2" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.46032)
+
+[node name="Probe3" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2.46032)
+
+[node name="Probe4" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Probe5" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.4983)
+
+[node name="Probe6" type="Node3D" parent="plane3/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2.50952)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, 0.433013, -0.75, -1.31321, 1.59135, -4.37673)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cqlem")

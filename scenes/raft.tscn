@@ -13,6 +13,7 @@ size = Vector3(1, 0.57666, 0.0281982)
 size = Vector3(0.646118, 0.57666, 0.0281982)
 
 [node name="Raft" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_mask = 30
 script = ExtResource("1_wq7xe")
 
@@ -48,6 +49,7 @@ top_level = true
 collision_mask = 14
 
 [node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 top_level = true
 
 [node name="CameraTarget" type="Node3D" parent="CameraController"]
