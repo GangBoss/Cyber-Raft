@@ -116,7 +116,7 @@ shader_parameter/dithering = true
 shader_parameter/colors = 12
 shader_parameter/dither_size = 1
 
-[node name="Level1" type="Node3D"]
+[node name="Level2" type="Node3D"]
 script = ExtResource("1_4nkto")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
