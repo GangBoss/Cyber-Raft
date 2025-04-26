@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmtoo8loueri"]
+
+[ext_resource type="Script" uid="uid://uptrudc5kqkp" path="res://scenes/debug/objects/dak.gd" id="1_5jx1r"]
+[ext_resource type="Script" uid="uid://dwo4xqkkqlmna" path="res://scenes/debug/objects/minnat.gd" id="3_tdmue"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udsyn"]
+albedo_color = Color(0.9, 0.6321, 0.054, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_weeah"]
+material = SubResource("StandardMaterial3D_udsyn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx21k"]
+
+[node name="Dak" type="CharacterBody3D"]
+collision_mask = 30
+script = ExtResource("1_5jx1r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_weeah")
+
+[node name="Minnat" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.505734)
+pixel_size = 0.005
+script = ExtResource("3_tdmue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kx21k")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+collision_mask = 14
+
+[node name="CameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="CameraTarget" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.980836, 0.194834, 0, -0.194834, 0.980836, 0, 1.19648, 5.56156)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666569, -7.45058e-09)
+current = true
