@@ -1,17 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8djikwjm3x2w"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_on5l8"]
+[ext_resource type="PackedScene" uid="uid://duv05ijqctwiq" path="res://assets/models/box.glb" id="1_3inec"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_on5l8"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.0720215, 0.0556641, 0.1)
 
 [node name="Box" type="RigidBody3D"]
 collision_layer = 4
 mass = 25.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="box2" parent="." instance=ExtResource("1_3inec")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("BoxMesh_on5l8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_on5l8")

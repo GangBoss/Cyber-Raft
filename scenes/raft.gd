@@ -11,9 +11,8 @@ var box = preload("res://scenes/box.tscn")
 @onready var anim: AnimationPlayer = $Anim
 
 
-#func apply_shake():
-	
 @onready var floor_point = $FloorPoint
+	
 
 @export var water : MeshInstance3D
 @export var water_force = 10.
@@ -130,12 +129,14 @@ func _camera_handle() -> void:
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	submerged = false
-	var depth = water.get_height(floor_point.global_position) - floor_point.global_position.y
+	var point_global = floor_point.global_position
+	var depth = water.get_height(point_global) - point_global.y 
 	if depth > 0:
 		submerged = true
-		var vertical_velocity =  1 * depth * water_force * delta
-		velocity += Vector3.UP * vertical_velocity
-		velocity += Vector3.UP * -velocity.y * water_drag * delta
+		var vertical_velocity = Vector3.UP * depth * water_force
+		velocity += vertical_velocity
+		var drag_velocity = -velocity.y * water_drag * delta
+		velocity += Vector3.UP * drag_velocity
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta

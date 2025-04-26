@@ -68,6 +68,10 @@ ui_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_3="boxes"
+
 [physics]
 
 common/physics_interpolation=true

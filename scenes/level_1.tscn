@@ -148,9 +148,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.920
 
 [node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_014kd")]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.153963, 0)
 water = NodePath("../Water")
-water_force = 5.0
+water_drag = 0.95
 
 [node name="Particles" type="GPUParticles3D" parent="Raft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
