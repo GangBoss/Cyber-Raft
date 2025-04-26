@@ -17,10 +17,10 @@ shader_parameter/albedo = Color(0.278431, 0.658824, 0.317647, 1)
 shader_parameter/water_texture1 = ExtResource("2_7wcun")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_qmoj4")
 shader_parameter/scroll_speed1 = Vector2(0.02, 0)
-shader_parameter/scroll_speed2 = Vector2(0, 0)
+shader_parameter/scroll_speed2 = Vector2(-0.03, 0)
 shader_parameter/blend_factor = 0.5
-shader_parameter/scale1 = Vector2(1, 1)
-shader_parameter/scale2 = Vector2(1, 1)
+shader_parameter/scale1 = Vector2(2, 2)
+shader_parameter/scale2 = Vector2(2, 2)
 shader_parameter/wave_strength = 0.2
 shader_parameter/wave_scale = 0.02
 shader_parameter/pixelation_level = 512
@@ -32,7 +32,7 @@ shader_parameter/wave_time = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aq2ne"]
 material = SubResource("ShaderMaterial_qi1wl")
-size = Vector2(100, 100)
+size = Vector2(200, 200)
 subdivide_width = 100
 subdivide_depth = 100
 

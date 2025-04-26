@@ -10,6 +10,10 @@ var direction: Vector3
 var box = preload("res://scenes/box.tscn")
 
 
+func move_camera_on_dock() -> void:
+	move_camera_on_dock()
+
+
 func _align_with_floor(floor_normal: Vector3) -> Transform3D:
 	var xform: Transform3D = global_transform
 	xform.basis.y = floor_normal
