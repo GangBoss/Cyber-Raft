@@ -7,12 +7,19 @@ const JUMP_VELOCITY = 4.5
 @export var forward_speed: float = 2.5
 var direction: Vector3
 
-var box = preload("res://scenes/box.tscn")
 @onready var anim: AnimationPlayer = $Anim
 
 
 @onready var floor_point = $FloorPoint
-	
+
+@onready var right_col: CollisionShape3D = $MeshInstance3D/StaticBody3D/RightCol
+@onready var left_col: CollisionShape3D = $MeshInstance3D/StaticBody3D/LeftCol
+@onready var forw_col: CollisionShape3D = $MeshInstance3D/StaticBody3D/ForwCol
+@onready var backw_col: CollisionShape3D = $MeshInstance3D/StaticBody3D/BackwCol
+
+@onready var colliders = [right_col, left_col, forw_col, backw_col]
+var colliders_enable = true
+
 
 @export var water : MeshInstance3D
 @export var water_force = 10.
@@ -20,6 +27,11 @@ var box = preload("res://scenes/box.tscn")
 @export var water_angular_drag := 0.05
 
 var submerged := false
+
+var box_count = 0
+
+@export var box_node : Resource
+@onready var box_placeholders = $BoxPlaceholders.get_children()
 
 
 
@@ -45,17 +57,18 @@ func set_forward_speed(speed: float) -> void:
 	forward_speed = speed
 
 
-func add_packet(index: int) -> void:
-	var box = box.instantiate()
-	get_parent().add_child(box)
-	box.name = str(index)
-	box.position = position + Vector3(0., 100., 0.)
+func add_packet(name: String, pos: Vector3) -> void:
+	var box = box_node.instantiate()
+	add_child(box)
+	box.name = name
+	box.position = pos
 
 
-#func _ready() -> void:
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#print("added")
-	#add_packet(1)
+func _ready() -> void:
+	var i = 0
+	for b in box_placeholders:
+		i+=1
+		add_packet(str(i), b.global_position)
 
 
 func _player_movement_and_rotation() -> void:
@@ -87,7 +100,20 @@ func _player_movement_and_rotation() -> void:
 	direction = lerp(direction, direction_impact, 0.015)
 	var tilt: float = direction.x * 90
 	$MeshInstance3D.rotation_degrees.z = tilt
-	$RaftCollision.rotation_degrees.z = tilt
+	if abs($MeshInstance3D.rotation_degrees.z)> 30.:
+		if colliders_enable:
+			print("colliders disabled")
+			colliders_enable = false
+			for c in colliders:
+				c.disabled = true
+	else:
+		if !colliders_enable:
+			print("colliders enabled")
+			colliders_enable = true
+			for c in colliders:
+				c.disabled = false
+		
+	
 	
 	# movement
 	if direction:
@@ -147,8 +173,12 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	_camera_handle()
 
-func _integrate_forces(state: PhysicsDirectBodyState3D):
-	if submerged:
-		state.linear_velocity *=  1 - water_drag
-		state.angular_velocity *= 1 - water_angular_drag 
-	
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	box_count += 1
+	print(box_count)
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	box_count -= 1
+	print(box_count)

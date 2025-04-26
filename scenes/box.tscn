@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8djikwjm3x2w"]
+[gd_scene load_steps=3 format=3 uid="uid://djihs8pbmttor"]
 
-[ext_resource type="PackedScene" uid="uid://duv05ijqctwiq" path="res://assets/models/box.glb" id="1_3inec"]
+[sub_resource type="BoxMesh" id="BoxMesh_8eg5b"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_on5l8"]
-size = Vector3(0.0720215, 0.0556641, 0.1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7rbl"]
 
-[node name="Box" type="RigidBody3D"]
+[node name="box" type="RigidBody3D"]
 collision_layer = 4
-mass = 25.0
+collision_mask = 5
 
-[node name="box2" parent="." instance=ExtResource("1_3inec")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.10939, 0, 0, 0, 0.10939, 0, 0, 0, 0.10939, 0, 0, 0)
+mesh = SubResource("BoxMesh_8eg5b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_on5l8")
+transform = Transform3D(0.10939, 0, 0, 0, 0.10939, 0, 0, 0, 0.10939, 0, 0, 0)
+shape = SubResource("BoxShape3D_l7rbl")
