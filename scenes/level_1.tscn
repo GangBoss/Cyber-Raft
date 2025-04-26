@@ -46,88 +46,115 @@ shape = SubResource("ConcavePolygonShape3D_bswci")
 
 [node name="Raft" parent="." instance=ExtResource("1_014kd")]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Effects" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Env" type="Node" parent="."]
+
+[node name="Dock" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
+mesh = ExtResource("3_5xbjy")
+skeleton = NodePath("../..")
+
+[node name="Tree1" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 15.7682)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree2" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 8.8018)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree3" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 3.95447)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree4" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 35.861)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree5" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 28.8946)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree6" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 24.0473)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree7" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 53.4366)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree8" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 46.4702)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree9" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 41.6229)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree10" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 53.4366)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree11" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 46.4702)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree12" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 41.6229)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree13" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 34.8975)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree14" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 27.9311)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree15" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 23.0838)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree16" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 17.2533)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree17" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 10.287)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="Tree18" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 5.43963)
+mesh = ExtResource("4_4nkto")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4352, -0.492244, 43.4324)
 size = Vector3(44.5917, 1, 105.552)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5424, -0.492244, 43.4324)
 size = Vector3(50.7354, 1, 105.552)
-
-[node name="Dock" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
-mesh = ExtResource("3_5xbjy")
-
-[node name="Tree1" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 15.7682)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree2" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 8.8018)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree3" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 3.95447)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree4" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 35.861)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree5" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 28.8946)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree6" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 24.0473)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree7" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.28175, 2.36357, 53.4366)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree8" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.62942, 2.36357, 46.4702)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree9" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.0747, 2.82065, 41.6229)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree10" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 53.4366)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree11" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 46.4702)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree12" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 41.6229)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree13" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 34.8975)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree14" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 27.9311)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree15" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 23.0838)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree16" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -11.9048, 2.36357, 17.2533)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree17" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -14.5571, 2.36357, 10.287)
-mesh = ExtResource("4_4nkto")
-
-[node name="Tree18" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -11.1118, 2.82065, 5.43963)
-mesh = ExtResource("4_4nkto")
 
 [connection signal="body_entered" from="WorldEnvironment/Area3D" to="." method="_on_area_3d_body_entered"]
