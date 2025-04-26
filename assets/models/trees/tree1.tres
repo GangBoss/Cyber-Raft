@@ -1,10 +1,10 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://dl6lij6x53hoc"]
 
-[ext_resource type="Texture2D" uid="uid://b84rhnxvntxmi" path="res://assets/models/tree_Image_0.png" id="1_fenbf"]
+[ext_resource type="Texture2D" uid="uid://b84rhnxvntxmi" path="res://assets/models/trees/tree_Image_0.png" id="1_4bw51"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gwkv"]
 resource_name = "Material_0.002"
-albedo_texture = ExtResource("1_fenbf")
+albedo_texture = ExtResource("1_4bw51")
 metallic = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nob0v"]

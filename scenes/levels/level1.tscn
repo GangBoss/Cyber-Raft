@@ -1,3 +1,291 @@
-[gd_scene format=3 uid="uid://2n277k77dygk"]
+[gd_scene load_steps=79 format=3 uid="uid://2n277k77dygk"]
+
+[ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_6gwlt"]
+[ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="2_c2nc4"]
+[ext_resource type="Texture2D" uid="uid://brr5vjtfu4274" path="res://assets/textures/cyberpunk-wall/cyberwall_3_basecolor.png" id="3_vhxpm"]
+[ext_resource type="Texture2D" uid="uid://ch8ablykw55gi" path="res://assets/textures/cyberpunk-wall/cyberwall_3_height.png" id="4_arkx4"]
+[ext_resource type="Texture2D" uid="uid://d1pkyjd3vmjem" path="res://assets/textures/cyberpunk-wall/cyberwall_3_normal.png" id="5_jqv5m"]
+[ext_resource type="Texture2D" uid="uid://bochacu2trhdh" path="res://assets/textures/cyberpunk-wall/cyberwall_3_roughness.png" id="6_noix2"]
+[ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_025c5"]
+[ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_bw3ef"]
+[ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="9_07dy8"]
+[ext_resource type="Texture2D" uid="uid://dcsf2ajpjm45h" path="res://scenes/levels/Level1/Heightmap_0_0.res" id="10_3gp1u"]
+[ext_resource type="PackedScene" uid="uid://ciin1vrn73n81" path="res://assets/models/trees/pine_tree/pine.tscn" id="10_nm6kf"]
+[ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="10_qg8x4"]
+[ext_resource type="Texture2D" uid="uid://dthl2ydu8x4ra" path="res://scenes/levels/Level1/Splatmap_0_0_0.res" id="11_025c5"]
+[ext_resource type="Texture2D" uid="uid://wx63hb2qd70v" path="res://scenes/levels/Level1/Water_0_0.res" id="11_igeo0"]
+[ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="11_nm6kf"]
+[ext_resource type="PackedScene" uid="uid://c115yvq5uqy4q" path="res://assets/models/trees/iva_tree/wood_iva.tscn" id="12_5ol6i"]
+[ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="12_y71nm"]
+[ext_resource type="Texture2D" uid="uid://p4jg7ves6c4p" path="res://scenes/levels/Level1/Heightmap_0_-1.res" id="13_6d4iq"]
+[ext_resource type="PackedScene" uid="uid://c22hmtnu6oi0e" path="res://assets/models/trees/wood_xz/wood_xz.tscn" id="13_nimoc"]
+[ext_resource type="Texture2D" uid="uid://bajuhnmh53jhd" path="res://scenes/levels/Level1/Water_0_-1.res" id="14_7plwd"]
+[ext_resource type="Texture2D" uid="uid://byym5wjgwxtfw" path="res://scenes/levels/Level1/Object_0_0_0.res" id="14_88m6t"]
+[ext_resource type="Texture2D" uid="uid://d3frxkosbm51t" path="res://scenes/levels/Level1/Heightmap_0_-2.res" id="15_agrr7"]
+[ext_resource type="Texture2D" uid="uid://6uk7cqb5buem" path="res://scenes/levels/Level1/Splatmap_0_-1_0.res" id="15_bw3ef"]
+[ext_resource type="Texture2D" uid="uid://ctkk3dpv4givj" path="res://scenes/levels/Level1/Water_0_-2.res" id="16_b2isc"]
+[ext_resource type="Texture2D" uid="uid://bj3vou3gbkr20" path="res://scenes/levels/Level1/Object_0_0_1.res" id="17_c52q8"]
+[ext_resource type="Texture2D" uid="uid://dog7wse2hnvk7" path="res://scenes/levels/Level1/Heightmap_0_-3.res" id="17_qg8x4"]
+[ext_resource type="Texture2D" uid="uid://sqaxpxd1hexq" path="res://scenes/levels/Level1/Object_0_0_2.res" id="18_2e78u"]
+[ext_resource type="Texture2D" uid="uid://cqjtnofo0k4xl" path="res://scenes/levels/Level1/Splatmap_0_-2_0.res" id="18_07dy8"]
+[ext_resource type="Texture2D" uid="uid://cq7gjr6n2x63q" path="res://scenes/levels/Level1/Water_0_-3.res" id="18_nm6kf"]
+[ext_resource type="Texture2D" uid="uid://dlsnbh7k3rew8" path="res://scenes/levels/Level1/Heightmap_0_-4.res" id="19_88m6t"]
+[ext_resource type="Texture2D" uid="uid://degweqwpd2vfh" path="res://scenes/levels/Level1/Object_0_-1_0.res" id="19_oub7f"]
+[ext_resource type="Texture2D" uid="uid://c43gy7elphgui" path="res://scenes/levels/Level1/Water_0_-4.res" id="20_oub7f"]
+[ext_resource type="Texture2D" uid="uid://d1u0bjtdn8avc" path="res://scenes/levels/Level1/Splatmap_0_-3_0.res" id="21_3gp1u"]
+[ext_resource type="Texture2D" uid="uid://dm6we8qv4mxta" path="res://scenes/levels/Level1/Heightmap_0_-5.res" id="21_p5q6g"]
+[ext_resource type="Texture2D" uid="uid://baoeypddl8hu3" path="res://scenes/levels/Level1/Water_0_-5.res" id="22_idf83"]
+[ext_resource type="Texture2D" uid="uid://4rvi4wd533kf" path="res://scenes/levels/Level1/Object_0_-2_0.res" id="23_p5q6g"]
+[ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="23_sqv5l"]
+[ext_resource type="Texture2D" uid="uid://cps0xc0u8bc4t" path="res://scenes/levels/Level1/Splatmap_0_-4_0.res" id="24_igeo0"]
+[ext_resource type="Texture2D" uid="uid://g6u05r06p81n" path="res://scenes/levels/Level1/Object_0_-1_1.res" id="24_mcic2"]
+[ext_resource type="Texture2D" uid="uid://c0bwxajpun7fy" path="res://scenes/levels/Level1/Object_0_-1_2.res" id="25_0p1sx"]
+[ext_resource type="Texture2D" uid="uid://ceyppxhq3jgi2" path="res://scenes/levels/Level1/Object_0_-3_0.res" id="27_idf83"]
+[ext_resource type="Texture2D" uid="uid://c1qwhcpwatcsd" path="res://scenes/levels/Level1/Splatmap_0_-5_0.res" id="27_y71nm"]
+[ext_resource type="Texture2D" uid="uid://vqmot3qxm777" path="res://scenes/levels/Level1/Object_0_-2_1.res" id="30_qncc2"]
+[ext_resource type="Texture2D" uid="uid://c8284o25kn52c" path="res://scenes/levels/Level1/Object_0_-2_2.res" id="31_01mkw"]
+[ext_resource type="Texture2D" uid="uid://cdkyvu2ydt1y8" path="res://scenes/levels/Level1/Object_0_-4_0.res" id="31_sqv5l"]
+[ext_resource type="Texture2D" uid="uid://camrcov5ntb3a" path="res://scenes/levels/Level1/Object_0_-5_0.res" id="35_gr08b"]
+[ext_resource type="Texture2D" uid="uid://bljvqdobg01cr" path="res://scenes/levels/Level1/Object_0_-3_1.res" id="36_wkw6o"]
+[ext_resource type="Texture2D" uid="uid://bv74va87tb1td" path="res://scenes/levels/Level1/Object_0_-3_2.res" id="37_78o28"]
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="40_88m6t"]
+[ext_resource type="Texture2D" uid="uid://d2fkv0ne60oio" path="res://scenes/levels/Level1/Object_0_-4_1.res" id="42_bx7ib"]
+[ext_resource type="Texture2D" uid="uid://d2nlc4dpwf2eh" path="res://scenes/levels/Level1/Object_0_-4_2.res" id="43_pw80n"]
+[ext_resource type="Texture2D" uid="uid://ccmxfai00i4rf" path="res://scenes/levels/Level1/Object_0_-5_1.res" id="48_6maf1"]
+[ext_resource type="Texture2D" uid="uid://7tlo4olygecv" path="res://scenes/levels/Level1/Object_0_-5_2.res" id="49_0bmoe"]
+
+[sub_resource type="Resource" id="Resource_gr08b"]
+script = ExtResource("7_025c5")
+Name = ""
+AlbedoTexture = ExtResource("3_vhxpm")
+NormalTexture = ExtResource("5_jqv5m")
+RoughnessTexture = ExtResource("6_noix2")
+HeightTexture = ExtResource("4_arkx4")
+TextureDetail = 1
+Triplanar = false
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_tsudw"]
+script = ExtResource("8_bw3ef")
+TextureSets = [SubResource("Resource_gr08b")]
+metadata/_custom_type_script = "uid://043vjblb04jf"
+
+[sub_resource type="Gradient" id="Gradient_78e70"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tbq4l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2448u"]
+color_ramp = SubResource("Gradient_78e70")
+noise = SubResource("FastNoiseLite_tbq4l")
+
+[sub_resource type="Resource" id="Resource_70saq"]
+script = ExtResource("10_qg8x4")
+Strategy = 1
+ObjectFrequency = -1
+RandomRange = 1.0
+NoiseTexture = SubResource("NoiseTexture2D_2448u")
+RandomYRotation = false
+ObjectScenes = [ExtResource("10_nm6kf")]
+LODList = null
+LODMeshes = null
+UpdateDistanceThreshold = 1.0
+UpdateTimeFrequency = 0.1
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://cgf61yxk46wa4"
+
+[sub_resource type="Resource" id="Resource_pxmkn"]
+script = ExtResource("11_nm6kf")
+Definition = SubResource("Resource_70saq")
+Hide = false
+metadata/_custom_type_script = "uid://comabiqrwe5u0"
+
+[sub_resource type="Gradient" id="Gradient_2poe7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nbo2r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2s8vu"]
+color_ramp = SubResource("Gradient_2poe7")
+noise = SubResource("FastNoiseLite_nbo2r")
+
+[sub_resource type="Resource" id="Resource_2drfn"]
+script = ExtResource("10_qg8x4")
+Strategy = 1
+ObjectFrequency = -1
+RandomRange = 1.0
+NoiseTexture = SubResource("NoiseTexture2D_2s8vu")
+RandomYRotation = false
+ObjectScenes = [ExtResource("12_5ol6i")]
+LODList = null
+LODMeshes = null
+UpdateDistanceThreshold = 1.0
+UpdateTimeFrequency = 0.1
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://cgf61yxk46wa4"
+
+[sub_resource type="Resource" id="Resource_2463x"]
+script = ExtResource("11_nm6kf")
+Definition = SubResource("Resource_2drfn")
+Hide = false
+metadata/_custom_type_script = "uid://comabiqrwe5u0"
+
+[sub_resource type="Gradient" id="Gradient_ldpak"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iaxgp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sue3i"]
+color_ramp = SubResource("Gradient_ldpak")
+noise = SubResource("FastNoiseLite_iaxgp")
+
+[sub_resource type="Resource" id="Resource_pvcyv"]
+script = ExtResource("10_qg8x4")
+Strategy = 1
+ObjectFrequency = -1
+RandomRange = 1.0
+NoiseTexture = SubResource("NoiseTexture2D_sue3i")
+RandomYRotation = false
+ObjectScenes = [ExtResource("13_nimoc")]
+LODList = null
+LODMeshes = null
+UpdateDistanceThreshold = 1.0
+UpdateTimeFrequency = 0.1
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://cgf61yxk46wa4"
+
+[sub_resource type="Resource" id="Resource_u0me6"]
+script = ExtResource("11_nm6kf")
+Definition = SubResource("Resource_pvcyv")
+Hide = false
+metadata/_custom_type_script = "uid://comabiqrwe5u0"
+
+[sub_resource type="Resource" id="Resource_71yoy"]
+script = ExtResource("9_07dy8")
+WaterFactor = 1.0
+WaterInnerOffset = 0.2
+WaterColor = Color(0.176471, 1, 1, 1)
+WaterFresnelColor = Color(1, 1, 1, 1)
+WaterMetallic = 0.0
+WaterRoughness = 0.0
+WaterTimeScale = 0.1
+WaterStrength = 0.4
+WaterNoiseScale = 10.0
+WaterHeightScale = 0.15
+WaterColorDeep = Color(1, 1, 1, 1)
+WaterColorShallow = Color(1, 1, 1, 1)
+WaterBeersLaw = 2.0
+WaterDepthOffset = -0.75
+WaterEdgeScale = 0.1
+WaterNear = 0.5
+WaterFar = 100.0
+WaterEdgeColor = Color(1, 1, 1, 1)
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://k2tvfxm6feg5"
+
+[sub_resource type="Resource" id="Resource_u1mjy"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, 0)
+HeightMapTexture = ExtResource("10_3gp1u")
+SplatmapsTexture = [ExtResource("11_025c5")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("14_88m6t"), ExtResource("17_c52q8"), ExtResource("18_2e78u")]
+WaterTexture = ExtResource("11_igeo0")
+
+[sub_resource type="Resource" id="Resource_a21j6"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, -1)
+HeightMapTexture = ExtResource("13_6d4iq")
+SplatmapsTexture = [ExtResource("15_bw3ef")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("19_oub7f"), ExtResource("24_mcic2"), ExtResource("25_0p1sx")]
+WaterTexture = ExtResource("14_7plwd")
+
+[sub_resource type="Resource" id="Resource_3e3xw"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, -2)
+HeightMapTexture = ExtResource("15_agrr7")
+SplatmapsTexture = [ExtResource("18_07dy8")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("23_p5q6g"), ExtResource("30_qncc2"), ExtResource("31_01mkw")]
+WaterTexture = ExtResource("16_b2isc")
+
+[sub_resource type="Resource" id="Resource_u1mhv"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, -3)
+HeightMapTexture = ExtResource("17_qg8x4")
+SplatmapsTexture = [ExtResource("21_3gp1u")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("27_idf83"), ExtResource("36_wkw6o"), ExtResource("37_78o28")]
+WaterTexture = ExtResource("18_nm6kf")
+
+[sub_resource type="Resource" id="Resource_5ol6i"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, -4)
+HeightMapTexture = ExtResource("19_88m6t")
+SplatmapsTexture = [ExtResource("24_igeo0")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("31_sqv5l"), ExtResource("42_bx7ib"), ExtResource("43_pw80n")]
+WaterTexture = ExtResource("20_oub7f")
+
+[sub_resource type="Resource" id="Resource_nimoc"]
+script = ExtResource("12_y71nm")
+ZonePosition = Vector2i(0, -5)
+HeightMapTexture = ExtResource("21_p5q6g")
+SplatmapsTexture = [ExtResource("27_y71nm")]
+FoliagesTexture = []
+ObjectsTexture = [ExtResource("35_gr08b"), ExtResource("48_6maf1"), ExtResource("49_0bmoe")]
+WaterTexture = ExtResource("22_idf83")
+
+[sub_resource type="Resource" id="Resource_c52q8"]
+script = ExtResource("23_sqv5l")
+Zones = [SubResource("Resource_u1mjy"), SubResource("Resource_a21j6"), SubResource("Resource_3e3xw"), SubResource("Resource_u1mhv"), SubResource("Resource_5ol6i"), SubResource("Resource_nimoc")]
 
 [node name="Level1" type="Node3D"]
+
+[node name="Raft" parent="." instance=ExtResource("1_6gwlt")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.160906, 0.423368, 4.84921)
+
+[node name="TerraBrush" type="Node3D" parent="."]
+script = ExtResource("2_c2nc4")
+ZonesSize = 128
+DataPath = "res://scenes/levels/Level1"
+TextureSets = SubResource("Resource_tsudw")
+Foliages = []
+DefaultObjectFrequency = 5
+Objects = [SubResource("Resource_pxmkn"), SubResource("Resource_2463x"), SubResource("Resource_u0me6")]
+WaterDefinition = SubResource("Resource_71yoy")
+TerrainZones = SubResource("Resource_c52q8")
+metadata/_custom_type_script = "uid://i5jcj7ukvoen"
+metadata/_edit_lock_ = true
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Water" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, 0)
+skeleton = NodePath("../..")
+
+[node name="Water2" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -92.9762)
+skeleton = NodePath("../..")
+
+[node name="Water3" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -184.624)
+skeleton = NodePath("../..")
+
+[node name="Water4" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -269.631)
+skeleton = NodePath("../..")
+
+[node name="Water5" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -354.638)
+skeleton = NodePath("../..")
+
+[node name="Water6" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -443.629)
+skeleton = NodePath("../..")
+
+[node name="Water7" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -529.965)
+skeleton = NodePath("../..")
+
+[node name="Water8" parent="Node3D" instance=ExtResource("40_88m6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -622.941)
+skeleton = NodePath("../..")

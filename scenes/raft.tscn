@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sfu3guvdlgpx"]
+[gd_scene load_steps=10 format=3 uid="uid://sfu3guvdlgpx"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
@@ -12,8 +12,71 @@ size = Vector3(1, 0.57666, 0.0281982)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypqu2"]
 size = Vector3(0.646118, 0.57666, 0.0281982)
 
+[sub_resource type="Animation" id="Animation_sl03k"]
+resource_name = "camera_on_dock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.329877),
+"update": 0,
+"values": [Vector3(-1.42109e-14, 1.11735, -0.0560725), Vector3(1.74368, 0.982035, -0.984261)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(0.406126, 0.329877),
+"update": 0,
+"values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15), Vector3(-0.176579, 0.778399, 0.143867)]
+}
+
+[sub_resource type="Animation" id="Animation_12u0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/CameraTarget/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.42109e-14, 1.11735, -0.0560725)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/CameraTarget/Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.118106, 2.1078e-16, -1.78882e-15)]
+}
+
+[sub_resource type="Animation" id="Animation_rakhh"]
+resource_name = "camera_on_boat"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12u0i"]
+_data = {
+&"RESET": SubResource("Animation_12u0i"),
+&"camera_on_boat": SubResource("Animation_rakhh"),
+&"camera_on_dock": SubResource("Animation_sl03k")
+}
+
 [node name="Raft" type="CharacterBody3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 collision_mask = 30
 script = ExtResource("1_wq7xe")
 
@@ -49,36 +112,20 @@ top_level = true
 collision_mask = 14
 
 [node name="CameraController" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 top_level = true
 
 [node name="CameraTarget" type="Node3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.980836, 0.194834, 0, -0.194834, 0.980836, 0, 1.19648, 5.56156)
+transform = Transform3D(-1, -1.69805e-08, 8.57578e-08, 0, 0.980955, 0.194234, -8.74228e-08, 0.194234, -0.980955, 9.19525e-08, 0.786674, -3.52443)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
-transform = Transform3D(1, 0, 0, 0, 0.993034, 0.117832, 0, -0.117832, 0.993034, 0, 1.22309, -0.0353274)
+transform = Transform3D(1, 1.76398e-15, 2.09312e-16, -1.77636e-15, 0.993034, 0.117832, 1.32349e-22, -0.117832, 0.993034, -1.42109e-14, 1.11735, -0.0560725)
 current = true
 
 [node name="RaftCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00890423, -0.132477, 0.072342)
 shape = SubResource("BoxShape3D_kx21k")
 
-[node name="Probes" type="Node3D" parent="."]
-
-[node name="Probe" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.149049)
-
-[node name="Probe6" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.407467, -0.197042, 0.149049)
-
-[node name="Probe2" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, -0.507598)
-
-[node name="Probe5" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40102, -0.197042, -0.507598)
-
-[node name="Probe3" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450339, -0.197042, 0.866678)
-
-[node name="Probe4" type="Node3D" parent="Probes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.378621, -0.197042, 0.880479)
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_12u0i")
+}
