@@ -8,6 +8,11 @@ const FAST_FALL_SPEED := 500.0 # speed after correct input
 const SCREEN_TOP := -50.0 # starting y position
 const SCREEN_BOTTOM := 800.0 # remove after this y (adjust for your screen size)
 
+@onready var red_text: RichTextLabel = $RedText
+@onready var big_text: RichTextLabel = $BigText
+@onready var big_text_2: RichTextLabel = $BigText2
+@onready var hint: RichTextLabel = $Hint
+
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -22,7 +27,8 @@ func _input(event):
 func spawn_labels():
 	var spacing = 80 # how much space between labels
 	for i in boxes.size():
-		var label = Label.new()
+		var label = RichTextLabel.new()
+		label.bbcode_enabled = true
 		label.text = str(boxes[i])
 		label.position = Vector2(40 + i * spacing, SCREEN_TOP)
 		print(label.position)
@@ -36,26 +42,30 @@ func spawn_labels():
 		})
 
 func start_mini_game() -> void:
+	red_text.modulate.a = 0
 	spawn_labels()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_mini_game()
+	add_packet_loss()
 
 
 func show_red_text(time: float = 2.0):
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 1.0, 1.0) \
-		.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	var tween_in = create_tween()
+	tween_in.tween_property(red_text, "modulate:a", 1.0, 1.0) \
+		.set_ease(Tween.EASE_IN)
 	
 	await get_tree().create_timer(time).timeout
-	tween.tween_property(self, "modulate:a", 1.0, 1.0) \
-		.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	
+	var tween_out = create_tween()
+	tween_out.tween_property(red_text, "modulate:a", 0.0, 1.0) \
+		.set_ease(Tween.EASE_OUT)
 
 
 func add_packet_loss():
-	modulate.a = 0
+	show_red_text()
 
 
 func _process(delta: float) -> void:

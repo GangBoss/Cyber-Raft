@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://jsxkn41s1tq7" path="res://scenes/ui.gd" id="1_x4jx1"]
 [ext_resource type="FontFile" uid="uid://xxo58ebnox6h" path="res://assets/fonts/Geo-Italic.ttf" id="3_yev5y"]
 
-[node name="UI" type="Control"]
+[node name="MiniGameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

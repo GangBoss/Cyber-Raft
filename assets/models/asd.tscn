@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://di4u3mm60tc2e"]
+
+[ext_resource type="PackedScene" uid="uid://dw2med466qqvk" path="res://assets/models/dock.glb" id="1_1axwx"]
+
+[node name="dock2" instance=ExtResource("1_1axwx")]

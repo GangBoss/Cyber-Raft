@@ -1,7 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://1mjkfm7gnvh2"]
+[gd_scene load_steps=16 format=3 uid="uid://1mjkfm7gnvh2"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12u0i"]
+size = Vector3(0.919556, 0.117798, 1.41407)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sl03k"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_12u0i"]
+lightmap_size_hint = Vector2i(3, 1)
+uv2_padding = 0.7
+radius = 0.01
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rakhh"]
+albedo_color = Color(0.603922, 1, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_hs5u7"]
+material = SubResource("StandardMaterial3D_rakhh")
+inner_radius = 0.105
+outer_radius = 0.111
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kx21k"]
 size = Vector3(1, 0.3125, 1.59962)
@@ -103,30 +122,42 @@ _data = {
 &"camera_on_raft": SubResource("Animation_rakhh")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sl03k"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_12u0i"]
-lightmap_size_hint = Vector2i(3, 1)
-uv2_padding = 0.7
-radius = 0.01
-height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rakhh"]
-albedo_color = Color(0.603922, 1, 1, 1)
-
-[sub_resource type="TorusMesh" id="TorusMesh_hs5u7"]
-material = SubResource("StandardMaterial3D_rakhh")
-inner_radius = 0.105
-outer_radius = 0.111
-
 [node name="Raft" type="CharacterBody3D"]
-collision_mask = 30
+collision_mask = 2
 script = ExtResource("1_wq7xe")
 water_drag = 0.95
+
+[node name="RaftCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144134, -0.295077, 0.132152)
+shape = SubResource("BoxShape3D_12u0i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0157852, -2.38419e-07, -0.00862408)
 mesh = ExtResource("3_ypqu2")
+
+[node name="Particles" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(0.499793, -0.0141266, -0.00266928, 0.00281664, 0.00518145, 0.499965, -0.0140979, -0.499774, 0.00525885, 0.140796, -0.0922119, 0.504742)
+amount = 40
+lifetime = 0.8
+speed_scale = 0.1
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_sl03k")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_12u0i")
+draw_pass_2 = SubResource("TorusMesh_hs5u7")
+
+[node name="Particles2" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(0.499793, -0.0141266, -0.00266928, 0.00303896, 0.0130745, 0.499819, -0.0140516, -0.499629, 0.0131549, -0.149142, -0.0922119, 0.503893)
+amount = 40
+lifetime = 0.8
+speed_scale = 0.1
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_sl03k")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_12u0i")
+draw_pass_2 = SubResource("TorusMesh_hs5u7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 collision_mask = 30
@@ -201,28 +232,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109318, 0, 0.303958)
 
 [node name="BoxPlaceholder6" type="Node3D" parent="BoxPlaceholders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14398, 0, 0.327954)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.999587, -0.0282531, -0.00533855, 0.00563329, 0.0103629, 0.99993, -0.0281958, -0.999547, 0.0105177, 0.297378, -0.184424, 1.00086)
-amount = 40
-lifetime = 1.65
-fixed_fps = 60
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_sl03k")
-draw_passes = 2
-draw_pass_1 = SubResource("SphereMesh_12u0i")
-draw_pass_2 = SubResource("TorusMesh_hs5u7")
-
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.999587, -0.0282531, -0.00533855, 0.00607793, 0.026149, 0.999639, -0.0281033, -0.999259, 0.0263099, -0.282499, -0.184424, 0.999161)
-amount = 40
-lifetime = 1.65
-fixed_fps = 60
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_sl03k")
-draw_passes = 2
-draw_pass_1 = SubResource("SphereMesh_12u0i")
-draw_pass_2 = SubResource("TorusMesh_hs5u7")
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_exited"]

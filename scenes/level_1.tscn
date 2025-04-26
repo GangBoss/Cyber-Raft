@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="6_2os1m"]
 [ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="6_15mv3"]
 [ext_resource type="AudioStream" uid="uid://dtbvfs2i8wug1" path="res://audio/music/AudioChille2.mp3" id="6_fcfvj"]
-[ext_resource type="Shader" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
+[ext_resource type="Shader" uid="uid://dwd1fb5lf5yuq" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="7_15mv3"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="8_15mv3"]
 [ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="13_7gny6"]
@@ -138,7 +138,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.920
 [node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_014kd")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.153963, 0)
-forward_speed = 3.0
 water = NodePath("../Water")
 box_node = ExtResource("14_2aecg")
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5lbx3hspm6ov"]
+
+[ext_resource type="Script" uid="uid://dyoqrl1hog8ve" path="res://scenes/intro.gd" id="1_4bx60"]
+[ext_resource type="Texture2D" path="res://assets/textures/Gemini_Generated_Image_6o3t7f6o3t7f6o3t.jpg" id="1_yjqpq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4bx60")
+
+[node name="GeminiGeneratedImage6o3t7f6o3t7f6o3t" type="Sprite2D" parent="."]
+position = Vector2(319, 207)
+scale = Vector2(0.314453, 0.314453)
+texture = ExtResource("1_yjqpq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 170.0
+offset_top = 23.0
+offset_right = 439.0
+offset_bottom = 208.0

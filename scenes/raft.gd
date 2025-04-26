@@ -75,9 +75,9 @@ func add_cubes(count: int) -> void:
 		var b = box_placeholders[i%b_l]
 		add_packet(str(i), b.global_position + Vector3.UP * .1 * level)
 
-func _ready() -> void:
-	add_cubes(100)
 
+func _ready() -> void:
+	add_cubes(40)
 
 
 func _player_movement_and_rotation() -> void:

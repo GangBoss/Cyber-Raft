@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://htr7ab1kvtyp"]
+
+[ext_resource type="Texture2D" uid="uid://c8qtokneipn17" path="res://assets/models/dock_Image_0.png" id="1_qckmx"]
+
+[resource]
+resource_name = "Material_0"
+albedo_texture = ExtResource("1_qckmx")
+metallic = 1.0
