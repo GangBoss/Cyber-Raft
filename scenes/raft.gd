@@ -8,6 +8,7 @@ const JUMP_VELOCITY = 4.5
 var direction: Vector3
 
 var box = preload("res://scenes/box.tscn")
+@onready var floor_point = $FloorPoint
 
 @export var water : MeshInstance3D
 @export var water_force = 10.
@@ -118,11 +119,12 @@ func _camera_handle() -> void:
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	submerged = false
-	var depth = water.get_height(global_position) - global_position.y 
+	var depth = water.get_height(floor_point.global_position) - floor_point.global_position.y
 	if depth > 0:
 		submerged = true
-		var vertical_velocity = Vector3.UP * depth * water_force
-		velocity += vertical_velocity
+		var vertical_velocity =  1 * depth * water_force * delta
+		velocity += Vector3.UP * vertical_velocity
+		velocity += Vector3.UP * -velocity.y * water_drag * delta
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta

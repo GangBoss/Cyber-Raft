@@ -80,5 +80,4 @@ shape = SubResource("BoxShape3D_r1bon")
 [node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("2_wul0m")]
 transform = Transform3D(4.06031, 0, 0, 0, 4.06031, 0, 0, 0, 4.06031, 0.366699, 0.751213, 0.165474)
 water = NodePath("../Water")
-water_force = 25.0
-water_drag = 0.4
+water_force = 1.0

@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dthl2ydu8x4ra" path="res://scenes/levels/Level1/Splatmap_0_0_0.res" id="11_025c5"]
 [ext_resource type="Texture2D" uid="uid://wx63hb2qd70v" path="res://scenes/levels/Level1/Water_0_0.res" id="11_igeo0"]
 [ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="11_nm6kf"]
-[ext_resource type="PackedScene" uid="uid://c115yvq5uqy4q" path="res://assets/models/trees/iva_tree/wood_iva.tscn" id="12_5ol6i"]
+[ext_resource type="PackedScene" path="res://assets/models/trees/iva_tree/wood_iva.tscn" id="12_5ol6i"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="12_y71nm"]
 [ext_resource type="Texture2D" uid="uid://p4jg7ves6c4p" path="res://scenes/levels/Level1/Heightmap_0_-1.res" id="13_6d4iq"]
 [ext_resource type="PackedScene" uid="uid://c22hmtnu6oi0e" path="res://assets/models/trees/wood_xz/wood_xz.tscn" id="13_nimoc"]
@@ -86,8 +86,8 @@ RandomRange = 1.0
 NoiseTexture = SubResource("NoiseTexture2D_2448u")
 RandomYRotation = false
 ObjectScenes = [ExtResource("10_nm6kf")]
-LODList = null
-LODMeshes = null
+LODList = []
+LODMeshes = []
 UpdateDistanceThreshold = 1.0
 UpdateTimeFrequency = 0.1
 VisualInstanceLayers = 1
@@ -115,8 +115,8 @@ RandomRange = 1.0
 NoiseTexture = SubResource("NoiseTexture2D_2s8vu")
 RandomYRotation = false
 ObjectScenes = [ExtResource("12_5ol6i")]
-LODList = null
-LODMeshes = null
+LODList = []
+LODMeshes = []
 UpdateDistanceThreshold = 1.0
 UpdateTimeFrequency = 0.1
 VisualInstanceLayers = 1
@@ -144,8 +144,8 @@ RandomRange = 1.0
 NoiseTexture = SubResource("NoiseTexture2D_sue3i")
 RandomYRotation = false
 ObjectScenes = [ExtResource("13_nimoc")]
-LODList = null
-LODMeshes = null
+LODList = []
+LODMeshes = []
 UpdateDistanceThreshold = 1.0
 UpdateTimeFrequency = 0.1
 VisualInstanceLayers = 1
@@ -289,3 +289,7 @@ skeleton = NodePath("../..")
 [node name="Water8" parent="Node3D" instance=ExtResource("40_88m6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -622.941)
 skeleton = NodePath("../..")
+
+[node name="Raft2" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_6gwlt")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.1433, 13.3568, 15.6772)
+water = NodePath("../Node3D/Water")
