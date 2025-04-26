@@ -110,20 +110,16 @@ var max_rotation_x: float = 30.0
 var rotation_x: float = 0.0
 var rotation_y: float = 0.0
 
+const SENSITIVITY = 0.004
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * SENSITIVITY)
+		$CameraController.rotate_x(-event.relative.y * SENSITIVITY)
+		$CameraController.rotation.x = clamp($CameraController.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
 func _camera_handle() -> void:
-	if Input.is_action_just_pressed("cam_left"):
-		$CameraController.rotate_y(deg_to_rad(-45))
-	if Input.is_action_just_pressed("cam_right"):
-		$CameraController.rotate_y(deg_to_rad(45))
 	$CameraController.position = lerp($CameraController.position, position, 0.2)
-	
-	#var mouse_movement = Input.get_mouse_motion()
-	#rotation_x -= mouse_movement.y * sensitivity
-	#rotation_x = clamp(rotation_x, min_rotation_x, max_rotation_x)
-	#rotation_degrees.x = rotation_x
-	#rotation_degrees.y = rotation_y
-	#var camera_offset = Vector3(0, 0, -10)  # Move the camera back
-	#global_transform.origin = camera_offset.rotated(Vector3.UP, rotation_y)
 
 
 func _physics_process(delta: float) -> void:
