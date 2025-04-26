@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c115yvq5uqy4q"]
-
-[ext_resource type="PackedScene" uid="uid://dum2s8rf3kio7" path="res://assets/models/trees/iva_tree/Wood_iva.glb" id="1_7pv7q"]
-
-[node name="Wood_iva" instance=ExtResource("1_7pv7q")]
-
-[node name="world" parent="." index="0"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4.28292, 0)
