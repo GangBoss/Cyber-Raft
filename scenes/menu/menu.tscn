@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ky1chwvc14f"]
+[gd_scene load_steps=7 format=3 uid="uid://d1ky1chwvc14f"]
 
 [ext_resource type="Script" uid="uid://qnfpk1bdgxtu" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
 [ext_resource type="PackedScene" uid="uid://dtaxgxp33nc50" path="res://scenes/menu/settings_menu.tscn" id="2_e0arn"]
+[ext_resource type="Texture2D" uid="uid://7lxwwll4g61y" path="res://assets/menu/fone2.jpg" id="2_y1o0p"]
 [ext_resource type="AudioStream" uid="uid://cdqay22fodp1k" path="res://audio/music/AudioMenu.mp3" id="3_e0arn"]
+[ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="3_r8yej"]
 
 [sub_resource type="GDScript" id="GDScript_e0arn"]
 script/source = "extends Control
@@ -36,6 +38,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mcvr8")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1279.0
+offset_bottom = 719.0
+texture = ExtResource("2_y1o0p")
+
 [node name="MainMenu" type="Control" parent="."]
 unique_name_in_owner = true
 anchors_preset = 0
@@ -45,26 +53,29 @@ script = SubResource("GDScript_e0arn")
 
 [node name="Play" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 87.0
-offset_top = 39.0
-offset_right = 186.0
-offset_bottom = 70.0
+offset_left = 865.0
+offset_top = 189.0
+offset_right = 1014.0
+offset_bottom = 249.0
+theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 81.0
-offset_top = 81.0
-offset_right = 187.0
-offset_bottom = 122.0
+offset_left = 859.0
+offset_top = 293.0
+offset_right = 1021.0
+offset_bottom = 361.0
+theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 128.0
-offset_right = 193.0
-offset_bottom = 185.0
+offset_left = 856.0
+offset_top = 394.0
+offset_right = 1022.0
+offset_bottom = 472.0
+theme_override_fonts/font = ExtResource("3_r8yej")
 text = "Quit"
 
 [node name="SettingsMenu" parent="." node_paths=PackedStringArray("Menu") instance=ExtResource("2_e0arn")]
