@@ -37,7 +37,6 @@ var cubes : Array[Node3D]
 signal cubes_changed(cubes: int)
 
 
-
 func move_camera_on_dock() -> void:
 	anim.stop()
 	anim.play("camera_on_dock")
@@ -193,7 +192,3 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func remove_cubes() -> void:
 	for c in cubes:
 		c.queue_free()
-
-
-func _on_cubes_changed(cubes: int) -> void:
-	print(box_count)

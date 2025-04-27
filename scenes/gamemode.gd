@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var raft: CharacterBody3D = %Raft
 @onready var music_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var ui: Control = $UI
 
 var boxes: Array = []
 
@@ -38,3 +39,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	await get_tree().create_timer(1.0).timeout
 	raft.set_forward_speed(4.5)
 	#get_tree().change_scene("res://scenes/level_1.tscn")
+
+
+func _on_raft_cubes_changed(cubes: int) -> void:
+	ui.add_packet_loss()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://csirgdxbgpsb3"]
+[gd_scene load_steps=30 format=3 uid="uid://csirgdxbgpsb3"]
 
 [ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
 [ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
+[ext_resource type="PackedScene" uid="uid://dow1gob53q0wu" path="res://scenes/ui/ui.tscn" id="2_6dial"]
 [ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="2_bswci"]
 [ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="3_5xbjy"]
 [ext_resource type="ArrayMesh" uid="uid://dl6lij6x53hoc" path="res://assets/models/trees/tree1.tres" id="4_4nkto"]
@@ -107,6 +108,8 @@ shader_parameter/dither_size = 1
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_4nkto")
+
+[node name="UI" parent="." instance=ExtResource("2_6dial")]
 
 [node name="Environment" parent="." instance=ExtResource("13_7gny6")]
 
@@ -316,4 +319,4 @@ stream = ExtResource("6_fcfvj")
 
 [connection signal="body_entered" from="Station1/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Station2/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
+[connection signal="cubes_changed" from="Raft" to="." method="_on_raft_cubes_changed"]
