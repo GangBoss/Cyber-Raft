@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://csirgdxbgpsb3"]
+[gd_scene load_steps=35 format=3 uid="uid://csirgdxbgpsb3"]
 
 [ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
 [ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://djihs8pbmttor" path="res://scenes/box.tscn" id="14_2aecg"]
 [ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="15_1s4pk"]
 [ext_resource type="Script" path="res://scenes/delete_cube.gd" id="15_6dial"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1s4pk"]
+size = Vector3(2.07172, 1, 0.270081)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e3sih"]
 size = Vector3(0.414795, 1, 2.64502)
@@ -125,6 +128,14 @@ script = ExtResource("1_4nkto")
 [node name="UI" parent="." instance=ExtResource("2_6dial")]
 
 [node name="Environment" parent="." instance=ExtResource("13_7gny6")]
+
+[node name="NextLevelTrigger" type="Area3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.998817, 85.7484)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0997008, 0, 1.89392)
+shape = SubResource("BoxShape3D_1s4pk")
 
 [node name="Station1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
@@ -291,11 +302,6 @@ collision_layer = 512
 size = Vector3(50.7354, 1, 105.552)
 material = SubResource("ShaderMaterial_go7sj")
 
-[node name="Grain" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(323, 238)
-texture = ExtResource("6_15mv3")
-
 [node name="Effects" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -335,47 +341,25 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Glitch" type="Control" parent="."]
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Effects"]
+visible = false
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy3"]
+material = SubResource("ShaderMaterial_x2xxo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Grain" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Glitch"]
-material = SubResource("ShaderMaterial_x2xxo")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Glitch2" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Glitch2"]
-material = SubResource("ShaderMaterial_x2xxo")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+position = Vector2(354, 249)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_15mv3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_fcfvj")
@@ -393,9 +377,12 @@ shape = SubResource("BoxShape3D_7nomh")
 [connection signal="packet_loss" from="UI" to="Raft" method="_on_ui_packet_loss"]
 [connection signal="packet_sent" from="UI" to="." method="_on_ui_packet_sent"]
 [connection signal="timeout" from="UI" to="." method="_on_ui_timeout"]
+[connection signal="body_entered" from="NextLevelTrigger" to="." method="_on_next_level_trigger_body_entered"]
 [connection signal="body_entered" from="Station1/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Station2/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="cubes_changed" from="Raft" to="." method="_on_raft_cubes_changed"]
 [connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
 [connection signal="death" from="Raft" to="." method="_on_raft_death"]
+[connection signal="got_damage" from="Raft" to="." method="_on_raft_got_damage"]
 [connection signal="body_entered" from="DeleteCube" to="DeleteCube" method="_on_body_entered"]
 [connection signal="cube_deleted" from="DeleteCube" to="Raft" method="_on_delete_cube_cube_deleted"]

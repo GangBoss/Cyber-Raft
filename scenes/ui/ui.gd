@@ -91,10 +91,6 @@ func show_red_text(time: float = 2.0):
 		.set_ease(Tween.EASE_OUT)
 
 
-func add_packet_loss():
-	show_red_text()
-
-
 func _physics_process(delta: float) -> void:
 	if gaming and timer != null:
 		var rem_time = str(int(timer.wait_time))
