@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://2n277k77dygk"]
+[gd_scene load_steps=141 format=3 uid="uid://2n277k77dygk"]
 
 [ext_resource type="Script" uid="uid://bepv6e4aap6s5" path="res://scenes/levels/level_1.gd" id="1_fm2x2"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="2_c2nc4"]
@@ -108,6 +108,10 @@
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="103_fm2x2"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="104_0hyvm"]
 [ext_resource type="Script" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
+[ext_resource type="PackedScene" uid="uid://xbw1tt68ugmy" path="res://scenes/enemys/EnemyShip.tscn" id="108_0hyvm"]
+[ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="110_knu8n"]
+[ext_resource type="PackedScene" uid="uid://dow1gob53q0wu" path="res://scenes/ui/ui.tscn" id="111_ll3gq"]
+[ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="112_c3aos"]
 
 [sub_resource type="Resource" id="Resource_gr08b"]
 script = ExtResource("7_025c5")
@@ -212,9 +216,6 @@ WaterTexture = ExtResource("22_idf83")
 script = ExtResource("23_sqv5l")
 Zones = [SubResource("Resource_u1mjy"), SubResource("Resource_a21j6"), SubResource("Resource_3e3xw"), SubResource("Resource_u1mhv"), SubResource("Resource_5ol6i"), SubResource("Resource_nimoc")]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uy6wj"]
-size = Vector3(0.414795, 1, 2.64502)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2ohm"]
 shader = ExtResource("103_fm2x2")
 shader_parameter/vertJerkOpt = 0.0
@@ -283,6 +284,17 @@ font = ExtResource("102_aq7hc")
 [sub_resource type="BoxShape3D" id="BoxShape3D_fm2x2"]
 size = Vector3(143.89, 1, 767.569)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uy6wj"]
+size = Vector3(0.414795, 1, 38.7562)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4ntr"]
+shader = ExtResource("112_c3aos")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.039
+
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_fm2x2")
 
@@ -333,17 +345,6 @@ skeleton = NodePath("../..")
 [node name="Water8" parent="Node3D" instance=ExtResource("40_88m6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -622.941)
 skeleton = NodePath("../..")
-
-[node name="Station1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
-mesh = ExtResource("98_kayls")
-
-[node name="Area3D" type="Area3D" parent="Station1"]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Station1/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119995, 0, -0.82251)
-shape = SubResource("BoxShape3D_uy6wj")
 
 [node name="Env" type="Node" parent="."]
 
@@ -433,5 +434,188 @@ script = ExtResource("107_aq7hc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93863, 0, -311.931)
 shape = SubResource("BoxShape3D_fm2x2")
 
+[node name="Enenmyes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="EnemyShip" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.346893, 14.5178, -71.6668)
+
+[node name="EnemyShip2" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.4822, 14.5178, -107.365)
+
+[node name="EnemyShip3" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.176, 14.5178, -137.198)
+
+[node name="EnemyShip4" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.38677, 14.5178, -153.262)
+
+[node name="EnemyShip5" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.75284, 14.5178, -177.486)
+
+[node name="EnemyShip6" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.52639, 14.5178, -185.646)
+
+[node name="EnemyShip7" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.1959, 14.5178, -214.204)
+
+[node name="EnemyShip8" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.7016, 14.5178, -235.113)
+
+[node name="EnemyShip9" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.7016, 14.5178, -261.377)
+
+[node name="EnemyShip10" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.3711, 14.5178, -261.377)
+
+[node name="EnemyShip11" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.3711, 14.5178, -306.509)
+
+[node name="EnemyShip12" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.3711, 14.5178, -325.123)
+
+[node name="EnemyShip13" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -22.2757, 14.5178, -325.123)
+
+[node name="EnemyShip14" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -22.2757, 14.5178, -350.112)
+
+[node name="EnemyShip15" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.418087, 14.5178, -358.272)
+
+[node name="EnemyShip16" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.418087, 14.5178, -389.635)
+
+[node name="EnemyShip17" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.8811, 14.5178, -389.635)
+
+[node name="EnemyShip18" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.8811, 14.5178, -419.723)
+
+[node name="EnemyShip19" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.4466, 14.5178, -446.497)
+
+[node name="EnemyShip20" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.4466, 14.5178, -467.661)
+
+[node name="EnemyShip21" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.5107, 14.5178, -467.661)
+
+[node name="EnemyShip22" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.0363, 14.5178, -489.079)
+
+[node name="EnemyShip23" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.0363, 14.5178, -516.618)
+
+[node name="EnemyShip24" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.4509, 14.5178, -516.618)
+
+[node name="EnemyShip25" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.4509, 14.5178, -539.312)
+
+[node name="EnemyShip26" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.70157, 14.5178, -539.312)
+
+[node name="EnemyShip27" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.70157, 14.5178, -597.704)
+
+[node name="EnemyShip28" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.70157, 14.5178, -618.103)
+
+[node name="EnemyShip29" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.7059, 14.5178, -618.103)
+
+[node name="EnemyShip30" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.7059, 14.5178, -618.103)
+
+[node name="Stations" type="Node" parent="."]
+
+[node name="Station1" type="MeshInstance3D" parent="Stations"]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 4.25552, 14.2584, -384.233)
+mesh = ExtResource("98_kayls")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Stations/Station1"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/Station1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119987, 0, -9.89462)
+shape = SubResource("BoxShape3D_uy6wj")
+
+[node name="Station2" type="MeshInstance3D" parent="Stations"]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 2.26174, 14.2584, -417.957)
+mesh = ExtResource("98_kayls")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Stations/Station2"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/Station2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119995, 0, -7.63715)
+shape = SubResource("BoxShape3D_uy6wj")
+
+[node name="Station3" type="MeshInstance3D" parent="Stations"]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, -3.86041, 14.2584, -598.228)
+mesh = ExtResource("98_kayls")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Stations/Station3"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/Station3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12001, 0, -2.99133)
+shape = SubResource("BoxShape3D_uy6wj")
+
+[node name="Grain" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(323, 238)
+texture = ExtResource("110_knu8n")
+
+[node name="UI" parent="." instance=ExtResource("111_ll3gq")]
+
+[node name="Glitch" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Glitch"]
+material = SubResource("ShaderMaterial_o4ntr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Glitch2" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Glitch2"]
+material = SubResource("ShaderMaterial_o4ntr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
 [connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
 [connection signal="body_entered" from="DeleteCube" to="DeleteCube" method="_on_body_entered"]
+[connection signal="body_entered" from="Stations/Station1/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Stations/Station2/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Stations/Station3/Area3D" to="." method="_on_area_3d_body_entered"]
