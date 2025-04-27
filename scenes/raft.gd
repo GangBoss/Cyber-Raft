@@ -9,7 +9,7 @@ var direction: Vector3
 
 @onready var anim: AnimationPlayer = $Anim
 
-
+@onready var bar = $SubViewport/ProgressBar
 @onready var floor_point = $FloorPoint
 
 @onready var right_col: CollisionShape3D = $MeshInstance3D/StaticBody3D/RightCol
@@ -176,6 +176,8 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_camera_handle()
+	if bar.value > 0:
+		bar.value -= delta
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

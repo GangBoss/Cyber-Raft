@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://br15uhoqjd81u"]
+
+[ext_resource type="Script" uid="uid://cg58ec7eg48x1" path="res://scenes/canon/enemy_canon.gd" id="1_03qqw"]
+[ext_resource type="PackedScene" uid="uid://bsne8nep08s1t" path="res://assets/models/guns/mega_gun (2).glb" id="2_5qnt3"]
+
+[node name="EnemyCanon" type="Node3D"]
+script = ExtResource("1_03qqw")
+
+[node name="mega_gun (2)" parent="." instance=ExtResource("2_5qnt3")]

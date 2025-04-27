@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2j1s12ybbihc"]
+
+[ext_resource type="PackedScene" uid="uid://ctwql7ial7rk3" path="res://scenes/canon/canon.tscn" id="1_w5vkb"]
+[ext_resource type="PackedScene" uid="uid://b27ceahyirfrb" path="res://scenes/canon/projectyle.tscn" id="2_87c6l"]
+[ext_resource type="Texture2D" uid="uid://brr5vjtfu4274" path="res://assets/textures/cyberpunk-wall/cyberwall_3_basecolor.png" id="3_6cvoq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuiw3"]
+albedo_texture = ExtResource("3_6cvoq")
+uv1_scale = Vector3(5, 5, 5)
+
+[node name="FireTest" type="Node3D"]
+
+[node name="Canon" parent="." instance=ExtResource("1_w5vkb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+projectile_scene = ExtResource("2_87c6l")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 0.5, 100)
+material = SubResource("StandardMaterial3D_xuiw3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30042, 6.05457)

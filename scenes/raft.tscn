@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1mjkfm7gnvh2"]
+[gd_scene load_steps=19 format=3 uid="uid://1mjkfm7gnvh2"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
@@ -122,6 +122,15 @@ _data = {
 &"camera_on_raft": SubResource("Animation_rakhh")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwqyq"]
+bg_color = Color(0.984314, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvlm"]
+bg_color = Color(4.81308e-08, 0.728518, 0.00494707, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sl03k"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Raft" type="CharacterBody3D"]
 collision_mask = 2
 script = ExtResource("1_wq7xe")
@@ -232,6 +241,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109318, 0, 0.303958)
 
 [node name="BoxPlaceholder6" type="Node3D" parent="BoxPlaceholders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14398, 0, 0.327954)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -8.0
+offset_right = 64.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_iwqyq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1bvlm")
+value = 100.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77929, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_sl03k")
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_exited"]
