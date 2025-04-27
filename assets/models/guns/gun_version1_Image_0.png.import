@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brr5vjtfu4274"
-path.s3tc="res://.godot/imported/cyberwall_3_basecolor.png-124c72bb9761ff3e2594fa1e896683c8.s3tc.ctex"
+uid="uid://c7ooyyxkpn7de"
+path.s3tc="res://.godot/imported/gun_version1_Image_0.png-3f2cfd53d891f8cad31e105edcb523ec.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "849024283227b68e4801157cf55aaf27"
+}
 
 [deps]
 
-source_file="res://assets/textures/cyberpunk-wall/cyberwall_3_basecolor.png"
-dest_files=["res://.godot/imported/cyberwall_3_basecolor.png-124c72bb9761ff3e2594fa1e896683c8.s3tc.ctex"]
+source_file="res://assets/models/guns/gun_version1_Image_0.png"
+dest_files=["res://.godot/imported/gun_version1_Image_0.png-3f2cfd53d891f8cad31e105edcb523ec.s3tc.ctex"]
 
 [params]
 
