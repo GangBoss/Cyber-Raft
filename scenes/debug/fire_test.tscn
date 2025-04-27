@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2j1s12ybbihc"]
+[gd_scene load_steps=7 format=3 uid="uid://c2j1s12ybbihc"]
 
-[ext_resource type="PackedScene" uid="uid://ctwql7ial7rk3" path="res://scenes/canon/canon.tscn" id="1_w5vkb"]
 [ext_resource type="Texture2D" uid="uid://brr5vjtfu4274" path="res://assets/textures/cyberpunk-wall/cyberwall_3_basecolor.png" id="3_6cvoq"]
-[ext_resource type="PackedScene" uid="uid://br15uhoqjd81u" path="res://scenes/canon/enemy_canon.tscn" id="3_w5vkb"]
+[ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="3_xuiw3"]
+[ext_resource type="PackedScene" uid="uid://djihs8pbmttor" path="res://scenes/box.tscn" id="4_uf32v"]
+[ext_resource type="PackedScene" uid="uid://xbw1tt68ugmy" path="res://scenes/enemys/EnemyShip.tscn" id="5_aor01"]
+[ext_resource type="PackedScene" uid="uid://cb3hpisnrtnuw" path="res://scenes/water.tscn" id="6_ltnm5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuiw3"]
 albedo_texture = ExtResource("3_6cvoq")
@@ -10,16 +12,22 @@ uv1_scale = Vector3(5, 5, 5)
 
 [node name="FireTest" type="Node3D"]
 
-[node name="Canon" parent="." instance=ExtResource("1_w5vkb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(100, 0.5, 100)
 material = SubResource("StandardMaterial3D_xuiw3")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30042, 6.05457)
+[node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("3_xuiw3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0276489, 0.702863, 0.0135498)
+forward_speed = 0.0
+water = NodePath("../Water")
+box_node = ExtResource("4_uf32v")
 
-[node name="EnemyCanon" parent="." instance=ExtResource("3_w5vkb")]
-transform = Transform3D(0.0827212, 0, 0.996573, 0, 1, 0, -0.996573, 0, 0.0827212, -5.405, 0.5, -7.307)
+[node name="EnemyShip" parent="." instance=ExtResource("5_aor01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45115, 0.702863, 10.6929)
+
+[node name="EnemyShip2" parent="." instance=ExtResource("5_aor01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81009, 0.702802, 7.33032)
+
+[node name="Water" parent="." instance=ExtResource("6_ltnm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017334, 0.0218205, 0)

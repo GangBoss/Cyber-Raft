@@ -6,15 +6,13 @@ signal shooted
 # The scene for the projectile (must be a RigidBody3D).
 @export var projectile_scene: PackedScene
 # The desired time in seconds for the projectile to stay in the air (approximately).
-@export var air_time: float = 2.5
+@export var air_time: float = 2
 # The initial upward velocity multiplier. Adjust to control the height.
-@export var upward_force_multiplier: float = 10.0
+@export var upward_force_multiplier: float = 3.0
 # Adjust this to control the influence of click distance on horizontal speed.
-@export var horizontal_speed_factor: float = 2.0
+@export var horizontal_speed_factor: float = 4.0
 # Store gravity vector (magnitude)
 var gravity_magnitude: float
-# Store the starting position of the launch
-var launch_position: Vector3
 
 
 var is_shooting: bool = false
@@ -35,7 +33,7 @@ func calculate_initial_vertical_velocity(time: float) -> float:
 
 # Function to calculate the horizontal velocity based on the mouse click and distance
 func calculate_horizontal_velocity(click_position: Vector3) -> Vector3:
-	var horizontal_displacement: Vector3 = click_position - launch_position
+	var horizontal_displacement: Vector3 = click_position - self.global_position
 	horizontal_displacement.y = 0.0 # Only consider horizontal displacement
 	var horizontal_distance: float = horizontal_displacement.length()
 
@@ -52,6 +50,7 @@ func launch(target_position: Vector3):
 		printerr("Projectile scene not assigned.")
 		return
 
+	print("shoot "+str(target_position))
 	var initial_vertical_velocity: float = calculate_initial_vertical_velocity(air_time)
 	var initial_horizontal_velocity: Vector3 = calculate_horizontal_velocity(target_position)
 
@@ -68,7 +67,9 @@ func launch(target_position: Vector3):
 
 	var projectile_rb: RigidBody3D = projectile_instance as RigidBody3D
 	get_tree().root.add_child(projectile_rb)
-	projectile_rb.global_position = launch_position
+	print("enemy position")
+	print(self.global_position)
+	projectile_rb.position = self.global_position
 	projectile_rb.linear_velocity = initial_velocity
 	is_shooting=false
 	emit_signal("shooted")
@@ -76,5 +77,4 @@ func launch(target_position: Vector3):
 
 # Set the initial launch position when the scene is ready
 func _ready():
-	launch_position = global_position
 	gravity_magnitude = abs(ProjectSettings.get_setting("physics/3d/default_gravity_vector").y)

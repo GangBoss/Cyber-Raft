@@ -2,10 +2,10 @@ extends Node3D
 class_name Rotatable
 
 var target_position: Vector3  # The 3D position to rotate towards
-var rotation_speed: float = 2.0  # Speed of rotation in radians per second
+var rotation_speed: float = 3.14  # Speed of rotation in radians per second
 var is_rotating: bool = false
 var current_target_angle_y: float # Keep track of the target angle
-var rotation_threshold: float = 0.01 # Threshold to stop rotation, in radians
+var rotation_threshold: float = 0.1 # Threshold to stop rotation, in radians
 
 func start_rotation(target: Vector3):
 	target_position = target

@@ -1,7 +1,7 @@
 extends CanonBase
 
 # Get the 3D position of a mouse click and launch upwards with horizontal direction
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_pos: Vector2 = event.position
 		var camera = get_viewport().get_camera_3d()

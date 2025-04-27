@@ -2,15 +2,17 @@ extends CanonBase
 
 var current_target : Node3D
 var has_target:bool= false
-var delay_before_shoot: float = 2
+var delay_before_shoot: float = 1
 var can_shoot:bool=true
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("found target"+str(body.global_position) +str(body.name))
 	current_target=body
 	has_target = true
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
+	print("exited target"+str(body.global_position)+str(body.name))
 	has_target = false
 
 func _process(delta: float):
@@ -19,7 +21,9 @@ func _process(delta: float):
 		print("is_shooting" + str(is_shooting))
 		print("has_target" + str(has_target))
 		print("can_shoot" + str(can_shoot))
-		shoot(current_target.position)
+		var random= randi()%200 -2
+		random=0
+		shoot(current_target.global_position+ Vector3(0,0,random))
 		
 
 func _on_shooted() -> void:

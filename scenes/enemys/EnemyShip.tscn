@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://xbw1tt68ugmy"]
+[gd_scene load_steps=4 format=3 uid="uid://xbw1tt68ugmy"]
 
 [ext_resource type="PackedScene" uid="uid://bmebw237rg5y2" path="res://assets/models/Enemys/ShipEnemy.glb" id="1_rdc2e"]
+[ext_resource type="PackedScene" uid="uid://br15uhoqjd81u" path="res://scenes/canon/enemy_canon.tscn" id="2_tv8cd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tv8cd"]
-size = Vector3(0.38147, 0.420074, 0.944824)
+size = Vector3(0.598236, 0.420074, 1.45593)
 
-[node name="EnemyShip" type="RigidBody3D"]
+[node name="EnemyShip" type="Node3D"]
 
 [node name="ShipEnemy" parent="." instance=ExtResource("1_rdc2e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00184536, -0.00261092, 0.00143659)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.00184536, -0.00261092, 0.00143659)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000544071, -0.0163492, -0.00447542)
+[node name="EnemyCanon" parent="." instance=ExtResource("2_tv8cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.298645, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.150406, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00978609, -0.0163492, 0.00864714)
 shape = SubResource("BoxShape3D_tv8cd")

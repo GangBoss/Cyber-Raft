@@ -97,6 +97,8 @@ func _player_movement_and_rotation() -> void:
 		direction_impact.x += 1
 	if Input.is_action_pressed("ui_down"):
 		direction_impact.z -= 0.3
+	if Input.is_action_pressed("ui_up"):
+		direction_impact.z += 0.3
 	
 	# cheap player rotation
 	#if input_dir != Vector2(0, 0):
@@ -140,24 +142,6 @@ func _player_movement_and_rotation() -> void:
 	
 	move_and_slide()
 
-
-# Sensitivity of the mouse movement
-var sensitivity: float = 0.1
-# Limits for rotation
-var min_rotation_x: float = -30.0
-var max_rotation_x: float = 30.0
-
-# Store the current rotation
-var rotation_x: float = 0.0
-var rotation_y: float = 0.0
-
-const SENSITIVITY = 0.004
-
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * SENSITIVITY)
-		$CameraController.rotate_x(-event.relative.y * SENSITIVITY)
-		$CameraController.rotation.x = clamp($CameraController.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _camera_handle() -> void:
 	$CameraController.position = lerp($CameraController.position, position, 0.2)

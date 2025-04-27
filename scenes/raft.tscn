@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://1mjkfm7gnvh2"]
+[gd_scene load_steps=20 format=3 uid="uid://1mjkfm7gnvh2"]
 
 [ext_resource type="Script" uid="uid://ci3jetj8gi47o" path="res://scenes/raft.gd" id="1_wq7xe"]
+[ext_resource type="PackedScene" uid="uid://ctwql7ial7rk3" path="res://scenes/canon/canon.tscn" id="3_12u0i"]
 [ext_resource type="ArrayMesh" uid="uid://wlgbmaa6oqra" path="res://assets/models/raft.tres" id="3_ypqu2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_12u0i"]
@@ -132,7 +133,7 @@ bg_color = Color(4.81308e-08, 0.728518, 0.00494707, 1)
 viewport_path = NodePath("SubViewport")
 
 [node name="Raft" type="CharacterBody3D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_wq7xe")
 water_drag = 0.95
 
@@ -269,6 +270,9 @@ show_percentage = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77929, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_sl03k")
+
+[node name="Canon" parent="." instance=ExtResource("3_12u0i")]
+transform = Transform3D(-0.497616, 0, -0.0487653, 0, 0.5, 0, 0.0487653, 0, -0.497616, 0, 0.118438, -0.390205)
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_exited"]
