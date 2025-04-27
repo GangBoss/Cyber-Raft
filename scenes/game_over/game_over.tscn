@@ -1,0 +1,299 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2ns7sf712xp7"]
+
+[ext_resource type="Script" uid="uid://j8468mlef6sx" path="res://scenes/game_over/restart.gd" id="1_e1dax"]
+[ext_resource type="Shader" uid="uid://dnrgxbc3lxei6" path="res://scenes/game_over/error_move.gdshader" id="1_n2vxo"]
+[ext_resource type="Texture2D" uid="uid://b7pwxt0b2yc4" path="res://scenes/game_over/error.png" id="2_e1dax"]
+[ext_resource type="Script" uid="uid://h5j02wkp5inn" path="res://scenes/game_over/error_bob.gd" id="4_qugp5"]
+[ext_resource type="Texture2D" uid="uid://cabucgucsu7tt" path="res://scenes/game_over/error_popup.png" id="4_r8365"]
+[ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="6_yd0c8"]
+
+[sub_resource type="Animation" id="Animation_n2vxo"]
+resource_name = "glitch"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Effects:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlitchedState/ColorBG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.36667, 2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e1dax"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Effects:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlitchedState/ColorBG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/ErrorPopup:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/ErrorPopup2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/ErrorPopup3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ui0wk"]
+_data = {
+&"RESET": SubResource("Animation_e1dax"),
+&"glitch": SubResource("Animation_n2vxo")
+}
+
+[sub_resource type="Animation" id="Animation_mfgop"]
+resource_name = "popups"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/ErrorPopup:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.00553),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/ErrorPopup2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.15409),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/ErrorPopup3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.30265),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghvvs"]
+_data = {
+&"RESET": SubResource("Animation_e1dax"),
+&"popups": SubResource("Animation_mfgop")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjpcq"]
+shader = ExtResource("1_n2vxo")
+shader_parameter/tiling = Vector2(3, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lv6q"]
+shader = ExtResource("6_yd0c8")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.039
+
+[sub_resource type="SystemFont" id="SystemFont_qugp5"]
+font_names = PackedStringArray("Ubuntu")
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e1dax")
+metadata/_edit_use_anchors_ = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ui0wk")
+}
+autoplay = "glitch"
+
+[node name="Anim2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ghvvs")
+}
+autoplay = "popups"
+
+[node name="GlitchedState" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorBG" type="ColorRect" parent="GlitchedState"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="Error" type="TextureRect" parent="GlitchedState"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hjpcq")
+offset_right = 2000.0
+offset_bottom = 1214.0
+texture = ExtResource("2_e1dax")
+
+[node name="Effects" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Effects"]
+material = SubResource("ShaderMaterial_0lv6q")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("4_qugp5")
+
+[node name="ErrorPopup" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(268.474, 206.25)
+scale = Vector2(0.518947, 0.518947)
+texture = ExtResource("4_r8365")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ErrorPopup"]
+offset_left = -119.473
+offset_top = -26.9777
+offset_right = 117.527
+offset_bottom = 13.0223
+theme_override_fonts/normal_font = SubResource("SystemFont_qugp5")
+bbcode_enabled = true
+text = "[color=black][font_size=35]LOL YOU DIED"
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrorPopup2" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(290.474, 236.25)
+scale = Vector2(0.518947, 0.518947)
+texture = ExtResource("4_r8365")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ErrorPopup2"]
+anchors_preset = -1
+anchor_left = 0.000472626
+anchor_top = -4.69569e-05
+anchor_right = 0.000472626
+anchor_bottom = 0.103111
+offset_left = -121.872
+offset_top = -50.0791
+offset_right = 115.128
+offset_bottom = -10.0791
+theme_override_fonts/normal_font = SubResource("SystemFont_qugp5")
+bbcode_enabled = true
+text = "[color=black][font_size=35]FU NOOB
+FU NOOB FU"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrorPopup3" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(317.474, 266.25)
+scale = Vector2(0.518947, 0.518947)
+texture = ExtResource("4_r8365")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/ErrorPopup3"]
+anchors_preset = -1
+anchor_top = -0.000187892
+anchor_right = 0.235002
+anchor_bottom = 0.248233
+offset_left = -231.239
+offset_top = -76.9899
+offset_right = 5.76065
+offset_bottom = -36.9899
+theme_override_fonts/normal_font = SubResource("SystemFont_qugp5")
+bbcode_enabled = true
+text = "[color=black][font_size=35]You lost too many packets
+
+Press any key to try again"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
