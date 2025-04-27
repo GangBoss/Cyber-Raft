@@ -7,6 +7,8 @@
 [node name="Canon" type="Node3D"]
 script = ExtResource("1_2j2he")
 projectile_scene = ExtResource("2_fov5r")
+air_time = 1.5
+horizontal_speed_factor = 5.0
 
 [node name="gun_version12" parent="." instance=ExtResource("2_slmuq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.330391, 0)

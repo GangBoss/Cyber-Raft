@@ -38,6 +38,7 @@ signal cubes_changed(cubes: int)
 
 @export var max_health = 100
 @export var delete_box_damage = 1
+@export var hit_damage = 5
 signal death()
 
 
@@ -195,3 +196,11 @@ func _on_delete_cube_cube_deleted() -> void:
 			bar.value -= delete_box_damage
 			if bar.value <= 0:
 				death.emit()
+
+
+
+func _on_hit_area_body_entered(body: Node3D) -> void:
+	if bar.value > 0:
+		bar.value -= hit_damage
+		if bar.value <= 0:
+			death.emit()

@@ -75,6 +75,7 @@ ui_down={
 3d_physics/layer_3="boxes"
 3d_physics/layer_4="bullet"
 3d_physics/layer_5="enemy"
+3d_physics/layer_6="player_bullet"
 
 [physics]
 

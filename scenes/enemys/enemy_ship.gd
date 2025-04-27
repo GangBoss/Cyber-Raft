@@ -1,22 +1,15 @@
-extends CharacterBody3D
+extends Node3D
 
-@export var speed: float = 5.0
-var player: Node3D
-
+@onready var bar = $SubViewport/ProgressBar
+var max_health=3
+var hit_damage=1
 
 func _ready() -> void:
-	player = get_tree().get_root().find_node("Raft", true, false)
-
-func _physics_process(delta: float) -> void:
-	player = get_tree().get_root().find_node("Raft", true, false)
-	if player:
-		var direction = (player.global_transform.origin - global_transform.origin)
-		direction.y = 0
-		direction = direction.normalized()
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-		move_and_slide()
-		
-func _handle_collision(collider: Object) -> void:
-	if collider.name == "Raft":
-		get_tree().quit()
+	bar.max_value = max_health
+	bar.value = max_health
+	
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if bar.value > 0:
+		bar.value -= hit_damage
+		if bar.value <= 0:
+			queue_free()
