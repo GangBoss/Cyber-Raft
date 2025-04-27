@@ -5,6 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_sswyy"]
 
 [node name="EnemyProjectyle" type="RigidBody3D"]
+collision_layer = 15
 script = ExtResource("1_cmky0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
