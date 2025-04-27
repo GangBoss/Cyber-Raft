@@ -10,7 +10,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 
 
-# Called when the node enters the scene tree for the first time.
+func _input(event):
+	if event is InputEventMouseButton and can_be_ended:
+		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+
+
 func _ready() -> void:
 	music_player.play()
 

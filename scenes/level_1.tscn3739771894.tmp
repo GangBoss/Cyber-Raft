@@ -123,6 +123,7 @@ size = Vector3(1000, 1, 1000)
 script = ExtResource("1_4nkto")
 
 [node name="UI" parent="." instance=ExtResource("2_6dial")]
+boxes = null
 
 [node name="Environment" parent="." instance=ExtResource("13_7gny6")]
 
