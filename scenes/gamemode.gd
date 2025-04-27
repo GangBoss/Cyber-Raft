@@ -43,3 +43,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_raft_cubes_changed(cubes: int) -> void:
 	ui.add_packet_loss()
+
+
+func _on_raft_death() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_over/game_over.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2ns7sf712xp7"]
+[gd_scene load_steps=16 format=3 uid="uid://c2ns7sf712xp7"]
 
 [ext_resource type="Script" uid="uid://j8468mlef6sx" path="res://scenes/game_over/restart.gd" id="1_e1dax"]
 [ext_resource type="Shader" uid="uid://dnrgxbc3lxei6" path="res://scenes/game_over/error_move.gdshader" id="1_n2vxo"]
@@ -6,35 +6,7 @@
 [ext_resource type="Script" uid="uid://h5j02wkp5inn" path="res://scenes/game_over/error_bob.gd" id="4_qugp5"]
 [ext_resource type="Texture2D" uid="uid://cabucgucsu7tt" path="res://scenes/game_over/error_popup.png" id="4_r8365"]
 [ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="6_yd0c8"]
-
-[sub_resource type="Animation" id="Animation_n2vxo"]
-resource_name = "glitch"
-length = 6.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Effects:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GlitchedState/ColorBG:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.36667, 2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
-"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
-"update": 0,
-"values": [Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://btkt6sv4au7hh" path="res://audio/Lofi Hip-Hop Beats Mirage.mp3" id="7_3mpp1"]
 
 [sub_resource type="Animation" id="Animation_e1dax"]
 resource_name = "RESET"
@@ -98,6 +70,35 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n2vxo"]
+resource_name = "glitch"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Effects:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GlitchedState/ColorBG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.36667, 2.02667, 2.5, 3.93667, 4.2, 4.66667, 4.9),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1), Color(0, 0, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ui0wk"]
@@ -209,6 +210,7 @@ color = Color(0, 0, 1, 1)
 [node name="Error" type="TextureRect" parent="GlitchedState"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_hjpcq")
+layout_mode = 0
 offset_right = 2000.0
 offset_bottom = 1214.0
 texture = ExtResource("2_e1dax")
@@ -297,3 +299,9 @@ text = "[color=black][font_size=35]You lost too many packets
 Press any key to try again"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3mpp1")
+autoplay = true
+
+[connection signal="animation_finished" from="Anim2" to="." method="_on_anim_2_animation_finished"]

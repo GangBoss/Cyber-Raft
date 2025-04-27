@@ -86,6 +86,7 @@ Menu = NodePath("../MainMenu")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_e0arn")
+autoplay = true
 
 [connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenu/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
