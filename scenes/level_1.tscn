@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bmt7h3l1yiu7o"]
+[gd_scene load_steps=32 format=3 uid="uid://csirgdxbgpsb3"]
 
 [ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
 [ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
@@ -145,6 +145,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.920
 [node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("1_014kd")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.153963, 0)
+collision_mask = 514
 water = NodePath("../Water")
 box_node = ExtResource("14_2aecg")
 delete_box_damage = 5
@@ -267,11 +268,17 @@ skeleton = NodePath("../..")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obj"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4352, -0.492244, 43.4324)
+layers = 512
 material_override = SubResource("ShaderMaterial_2os1m")
+use_collision = true
+collision_layer = 512
 size = Vector3(44.5917, 1, 105.552)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Obj"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5424, -0.492244, 43.4324)
+layers = 513
+use_collision = true
+collision_layer = 512
 size = Vector3(50.7354, 1, 105.552)
 material = SubResource("ShaderMaterial_go7sj")
 
