@@ -33,8 +33,13 @@ var box_count = 0
 @export var box_node : Resource
 @onready var box_placeholders = $BoxPlaceholders.get_children()
 var cubes : Array[Node3D] 
-
 signal cubes_changed(cubes: int)
+
+
+@export var max_health = 100
+@export var delete_box_damage = 1
+signal death()
+
 
 
 func move_camera_on_dock() -> void:
@@ -76,6 +81,8 @@ func add_cubes(count: int) -> void:
 
 
 func _ready() -> void:
+	bar.max_value = max_health
+	bar.value = max_health
 	add_cubes(40)
 
 
@@ -176,8 +183,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_camera_handle()
-	if bar.value > 0:
-		bar.value -= delta
+
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -194,3 +200,14 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func remove_cubes() -> void:
 	for c in cubes:
 		c.queue_free()
+
+
+func _on_cubes_changed(cubes: int) -> void:
+	print(box_count)
+
+
+func _on_delete_cube_cube_deleted() -> void:
+		if bar.value > 0:
+			bar.value -= delete_box_damage
+			if bar.value <= 0:
+				death.emit()
