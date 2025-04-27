@@ -1,9 +1,10 @@
 extends Node3D
 
+@onready var ui: Control = $UI
 @onready var raft: CharacterBody3D = %Raft
 @onready var music_player: AudioStreamPlayer = $Env/AudioStreamPlayer
-@onready var ui: Control = $UI
-@onready var glitch: Control = %Glitch
+@onready var grain: Sprite2D = %Grain
+@onready var glitch: BackBufferCopy = $Effects/BackBufferCopy3
 
 var boxes: Array = []
 
@@ -36,7 +37,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _on_raft_cubes_changed(cubes: int) -> void:
-	ui.add_packet_loss()
+	ui.show_red_text()
 
 
 func _on_raft_death() -> void:
@@ -45,6 +46,7 @@ func _on_raft_death() -> void:
 
 func _on_ui_packet_loss() -> void:
 	glitch.visible = true
+	raft.decrease_health()
 	await get_tree().create_timer(0.2).timeout
 	glitch.visible = false
 
@@ -57,3 +59,14 @@ func _on_ui_timeout() -> void:
 	raft.move_camera_on_raft()
 	await get_tree().create_timer(1.0).timeout
 	raft.set_forward_speed(4.5)
+
+
+func _on_next_level_trigger_body_entered(body: Node3D) -> void:
+	grain.visible = true
+	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
+
+
+func _on_raft_got_damage() -> void:
+	glitch.visible = true
+	await get_tree().create_timer(0.2).timeout
+	glitch.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://2n277k77dygk"]
+[gd_scene load_steps=143 format=3 uid="uid://2n277k77dygk"]
 
 [ext_resource type="Script" uid="uid://bepv6e4aap6s5" path="res://scenes/levels/level_1.gd" id="1_fm2x2"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="2_c2nc4"]
@@ -287,7 +287,24 @@ size = Vector3(143.89, 1, 767.569)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uy6wj"]
 size = Vector3(0.414795, 1, 38.7562)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3aos"]
+shader = ExtResource("103_fm2x2")
+shader_parameter/vertJerkOpt = 0.0
+shader_parameter/vertMovementOpt = 0.0
+shader_parameter/bottomStaticOpt = 0.0
+shader_parameter/bottomStaticStrenth = 0.7
+shader_parameter/scalinesOpt = 0.8
+shader_parameter/rgbOffsetOpt = 0.2
+shader_parameter/horzFuzzOpt = 0.15
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o4ntr"]
+shader = ExtResource("104_0hyvm")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qc1mu"]
 shader = ExtResource("112_c3aos")
 shader_parameter/shake_power = 0.03
 shader_parameter/shake_rate = 1.0
@@ -572,41 +589,51 @@ texture = ExtResource("110_knu8n")
 
 [node name="UI" parent="." instance=ExtResource("111_ll3gq")]
 
-[node name="Glitch" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
+[node name="Effects" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Glitch"]
-material = SubResource("ShaderMaterial_o4ntr")
-layout_mode = 1
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy"]
+material = SubResource("ShaderMaterial_c3aos")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Glitch2" type="Control" parent="."]
-unique_name_in_owner = true
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy2"]
+material = SubResource("ShaderMaterial_o4ntr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Effects"]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+rect = Rect2(0, 0, 640, 480)
 
-[node name="ColorRect" type="ColorRect" parent="Glitch2"]
-material = SubResource("ShaderMaterial_o4ntr")
-layout_mode = 1
+[node name="ColorRect" type="ColorRect" parent="Effects/BackBufferCopy3"]
+material = SubResource("ShaderMaterial_qc1mu")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

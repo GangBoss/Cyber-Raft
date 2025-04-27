@@ -1,8 +1,8 @@
 extends Node3D
-
+@onready var ui: Control = $UI
 @onready var raft: CharacterBody3D = %Raft
 @onready var music_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var ui: Control = $UI
+
 @onready var grain: Sprite2D = %Grain
 @onready var glitch: BackBufferCopy = $Effects/BackBufferCopy3
 
