@@ -1,5 +1,6 @@
-[gd_scene load_steps=112 format=3 uid="uid://2n277k77dygk"]
+[gd_scene load_steps=136 format=3 uid="uid://2n277k77dygk"]
 
+[ext_resource type="Script" uid="uid://bepv6e4aap6s5" path="res://scenes/levels/level_1.gd" id="1_fm2x2"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="2_c2nc4"]
 [ext_resource type="Texture2D" uid="uid://brr5vjtfu4274" path="res://assets/textures/cyberpunk-wall/cyberwall_3_basecolor.png" id="3_vhxpm"]
 [ext_resource type="Texture2D" uid="uid://ch8ablykw55gi" path="res://assets/textures/cyberpunk-wall/cyberwall_3_height.png" id="4_arkx4"]
@@ -97,6 +98,16 @@
 [ext_resource type="PackedScene" uid="uid://bhwwsjscs8gul" path="res://assets/models/trees/keney/tree_thin.glb" id="67_rplkk"]
 [ext_resource type="PackedScene" uid="uid://p2bd204dnbvl" path="res://assets/models/trees/keney/tree_thin_dark.glb" id="68_5papr"]
 [ext_resource type="PackedScene" uid="uid://dc4oun8rguxtx" path="res://assets/models/trees/keney/tree_thin_fall.glb" id="69_0234c"]
+[ext_resource type="ArrayMesh" uid="uid://ko4asaqm2827" path="res://assets/models/dock.tres" id="98_kayls"]
+[ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="99_7ntxy"]
+[ext_resource type="PackedScene" uid="uid://djihs8pbmttor" path="res://scenes/box.tscn" id="100_4u2mj"]
+[ext_resource type="AudioStream" uid="uid://dtbvfs2i8wug1" path="res://audio/music/AudioChille2.mp3" id="101_4u2mj"]
+[ext_resource type="Texture2D" uid="uid://bsegwk751omwl" path="res://assets/textures/particle.png" id="101_b1buk"]
+[ext_resource type="FontFile" uid="uid://cxe54i0grmnx1" path="res://assets/fonts/Audiowide-Regular.ttf" id="102_aq7hc"]
+[ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="102_b1buk"]
+[ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="103_fm2x2"]
+[ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="104_0hyvm"]
+[ext_resource type="Script" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
 
 [sub_resource type="Resource" id="Resource_gr08b"]
 script = ExtResource("7_025c5")
@@ -201,12 +212,86 @@ WaterTexture = ExtResource("22_idf83")
 script = ExtResource("23_sqv5l")
 Zones = [SubResource("Resource_u1mjy"), SubResource("Resource_a21j6"), SubResource("Resource_3e3xw"), SubResource("Resource_u1mhv"), SubResource("Resource_5ol6i"), SubResource("Resource_nimoc")]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uy6wj"]
+size = Vector3(0.414795, 1, 2.64502)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2ohm"]
+shader = ExtResource("103_fm2x2")
+shader_parameter/vertJerkOpt = 0.0
+shader_parameter/vertMovementOpt = 0.0
+shader_parameter/bottomStaticOpt = 0.0
+shader_parameter/bottomStaticStrenth = 0.7
+shader_parameter/scalinesOpt = 0.8
+shader_parameter/rgbOffsetOpt = 0.2
+shader_parameter/horzFuzzOpt = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u14cl"]
+shader = ExtResource("104_0hyvm")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
+
+[sub_resource type="Curve" id="Curve_knu8n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220232, 1), 0.0, 0.0, 0, 0, Vector2(0.799789, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7s07"]
+curve = SubResource("Curve_knu8n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ll3gq"]
+emission_shape = 1
+emission_sphere_radius = 45.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_max = 0.3
+gravity = Vector3(0, -0.01, 0)
+scale_curve = SubResource("CurveTexture_i7s07")
+color = Color(1, 1, 1, 0.156863)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwx4m"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("101_b1buk")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_c3aos"]
+material = SubResource("StandardMaterial3D_cwx4m")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2y5yt"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_o4ntr"]
+material = SubResource("StandardMaterial3D_2y5yt")
+text = "1"
+font = ExtResource("102_aq7hc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2os1m"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_qc1mu"]
+material = SubResource("StandardMaterial3D_2os1m")
+text = "0
+"
+font = ExtResource("102_aq7hc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fm2x2"]
+size = Vector3(143.89, 1, 767.569)
+
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_fm2x2")
 
 [node name="TerraBrush" type="Node3D" parent="."]
 script = ExtResource("2_c2nc4")
 ZonesSize = 128
 DataPath = "res://scenes/levels/Level1"
+CollisionLayers = 2
+CollisionMask = 0
 TextureSets = SubResource("Resource_tsudw")
 Foliages = []
 DefaultObjectFrequency = 5
@@ -248,3 +333,105 @@ skeleton = NodePath("../..")
 [node name="Water8" parent="Node3D" instance=ExtResource("40_88m6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1982, -622.941)
 skeleton = NodePath("../..")
+
+[node name="Station1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 5.90405, 1.00637, 57.9964)
+mesh = ExtResource("98_kayls")
+
+[node name="Area3D" type="Area3D" parent="Station1"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Station1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119995, 0, -0.82251)
+shape = SubResource("BoxShape3D_uy6wj")
+
+[node name="Env" type="Node" parent="."]
+
+[node name="Effects" type="Control" parent="Env"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Env/Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Env/Effects/BackBufferCopy"]
+material = SubResource("ShaderMaterial_o2ohm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Env/Effects"]
+rect = Rect2(0, 0, 640, 480)
+
+[node name="ColorRect" type="ColorRect" parent="Env/Effects/BackBufferCopy2"]
+material = SubResource("ShaderMaterial_u14cl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Env"]
+stream = ExtResource("101_4u2mj")
+autoplay = true
+parameters/looping = true
+
+[node name="Environment" parent="Env" instance=ExtResource("102_b1buk")]
+
+[node name="Raft" parent="." node_paths=PackedStringArray("water") instance=ExtResource("99_7ntxy")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.7579, 13.6388, -654.452)
+water = NodePath("../Node3D/Water")
+box_node = ExtResource("100_4u2mj")
+delete_box_damage = 5
+
+[node name="Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ll3gq")
+draw_pass_1 = SubResource("QuadMesh_c3aos")
+
+[node name="1Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ll3gq")
+draw_pass_1 = SubResource("TextMesh_o4ntr")
+
+[node name="0Particles" type="GPUParticles3D" parent="Raft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+cast_shadow = 0
+amount = 120
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ll3gq")
+draw_pass_1 = SubResource("TextMesh_qc1mu")
+
+[node name="DeleteCube" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57317, 0)
+collision_mask = 4
+script = ExtResource("107_aq7hc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeleteCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93863, 0, -311.931)
+shape = SubResource("BoxShape3D_fm2x2")
+
+[connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
+[connection signal="body_entered" from="DeleteCube" to="DeleteCube" method="_on_body_entered"]
