@@ -1,7 +1,4 @@
-# Launcher.gd
-# Attach this script to a Node3D in your main scene.
-extends  CanonBase
-var is_shooting: bool = false
+extends CanonBase
 
 # Get the 3D position of a mouse click and launch upwards with horizontal direction
 func _unhandled_input(event):
@@ -21,16 +18,7 @@ func _unhandled_input(event):
 				print("position of click"+str(click_position))
 			else:
 				click_position = ray_origin + ray_direction * 10.0
-			is_shooting=true
-			start_rotation(click_position)
+			shoot(click_position)
 			get_viewport().set_input_as_handled()
 		else:
 			printerr("No active 3D camera found in the viewport.")
-
-
-func _process(delta: float):
-	super(delta)
-	if is_rotating == false && is_shooting == true:
-		launch(target_position)
-		is_shooting = false
-		

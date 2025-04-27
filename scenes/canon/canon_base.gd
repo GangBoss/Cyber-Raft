@@ -1,6 +1,7 @@
 extends Rotatable
-
 class_name CanonBase
+
+signal shooted
 ## Exports - Assign these in the Godot Editor Inspector
 # The scene for the projectile (must be a RigidBody3D).
 @export var projectile_scene: PackedScene
@@ -10,14 +11,22 @@ class_name CanonBase
 @export var upward_force_multiplier: float = 10.0
 # Adjust this to control the influence of click distance on horizontal speed.
 @export var horizontal_speed_factor: float = 2.0
-
-
 # Store gravity vector (magnitude)
 var gravity_magnitude: float
 # Store the starting position of the launch
 var launch_position: Vector3
 
 
+var is_shooting: bool = false
+
+func shoot(shoot_position: Vector3):
+	is_shooting=true
+	start_rotation(shoot_position)
+
+func _process(delta: float):
+	super(delta)
+	if is_rotating == false && is_shooting == true:
+		launch(target_position)
 
 # Function to calculate the required initial vertical velocity to achieve air time
 func calculate_initial_vertical_velocity(time: float) -> float:
@@ -61,7 +70,8 @@ func launch(target_position: Vector3):
 	get_tree().root.add_child(projectile_rb)
 	projectile_rb.global_position = launch_position
 	projectile_rb.linear_velocity = initial_velocity
-
+	is_shooting=false
+	emit_signal("shooted")
 	print("Projectile launched with velocity: ", initial_velocity)
 
 # Set the initial launch position when the scene is ready
