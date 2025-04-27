@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btkt6sv4au7hh"
+path="res://.godot/imported/Lofi Hip-Hop Beats Mirage.mp3-2af10a3434860b603df85e168ec38573.mp3str"
+
+[deps]
+
+source_file="res://audio/Lofi Hip-Hop Beats Mirage.mp3"
+dest_files=["res://.godot/imported/Lofi Hip-Hop Beats Mirage.mp3-2af10a3434860b603df85e168ec38573.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

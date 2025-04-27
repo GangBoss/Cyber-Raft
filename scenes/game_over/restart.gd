@@ -3,6 +3,7 @@ extends Control
 
 var can_be_ended : bool = false
 
+@onready var music_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and can_be_ended:
@@ -11,7 +12,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	music_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

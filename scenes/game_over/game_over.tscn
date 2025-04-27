@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2ns7sf712xp7"]
+[gd_scene load_steps=16 format=3 uid="uid://c2ns7sf712xp7"]
 
 [ext_resource type="Script" uid="uid://j8468mlef6sx" path="res://scenes/game_over/restart.gd" id="1_e1dax"]
 [ext_resource type="Shader" uid="uid://dnrgxbc3lxei6" path="res://scenes/game_over/error_move.gdshader" id="1_n2vxo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://h5j02wkp5inn" path="res://scenes/game_over/error_bob.gd" id="4_qugp5"]
 [ext_resource type="Texture2D" uid="uid://cabucgucsu7tt" path="res://scenes/game_over/error_popup.png" id="4_r8365"]
 [ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="6_yd0c8"]
+[ext_resource type="AudioStream" uid="uid://btkt6sv4au7hh" path="res://audio/Lofi Hip-Hop Beats Mirage.mp3" id="7_3mpp1"]
 
 [sub_resource type="Animation" id="Animation_e1dax"]
 resource_name = "RESET"
@@ -298,5 +299,9 @@ text = "[color=black][font_size=35]You lost too many packets
 Press any key to try again"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3mpp1")
+autoplay = true
 
 [connection signal="animation_finished" from="Anim2" to="." method="_on_anim_2_animation_finished"]
