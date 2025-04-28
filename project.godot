@@ -13,6 +13,11 @@ config_version=5
 config/name="CyberRaft"
 run/main_scene="uid://d1ky1chwvc14f"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -78,4 +83,5 @@ ui_down={
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true

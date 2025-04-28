@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bmt7h3l1yiu7o"]
+[gd_scene load_steps=36 format=3 uid="uid://bmt7h3l1yiu7o"]
 
 [ext_resource type="Script" uid="uid://bp3x7mqd0ajgj" path="res://scenes/gamemode.gd" id="1_4nkto"]
 [ext_resource type="PackedScene" uid="uid://1mjkfm7gnvh2" path="res://scenes/raft.tscn" id="1_014kd"]
@@ -13,10 +13,11 @@
 [ext_resource type="Shader" uid="uid://dwd1fb5lf5yuq" path="res://assets/shaders/Object Shaders/Retrowave.gdshader" id="7_2y5yt"]
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="7_15mv3"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="8_15mv3"]
+[ext_resource type="PackedScene" uid="uid://xbw1tt68ugmy" path="res://scenes/enemys/EnemyShip.tscn" id="12_1s4pk"]
 [ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="13_7gny6"]
 [ext_resource type="PackedScene" uid="uid://djihs8pbmttor" path="res://scenes/box.tscn" id="14_2aecg"]
 [ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="15_1s4pk"]
-[ext_resource type="Script" path="res://scenes/delete_cube.gd" id="15_6dial"]
+[ext_resource type="Script" uid="uid://bnbfr3fo8nlyc" path="res://scenes/delete_cube.gd" id="15_6dial"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1s4pk"]
 size = Vector3(2.07172, 1, 0.270081)
@@ -367,11 +368,21 @@ autoplay = true
 
 [node name="DeleteCube" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57317, 0)
+collision_layer = 255
 collision_mask = 4
 script = ExtResource("15_6dial")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeleteCube"]
 shape = SubResource("BoxShape3D_7nomh")
+
+[node name="EnemyShip" parent="." instance=ExtResource("12_1s4pk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.1445, 0, 13.3903)
+
+[node name="EnemyShip2" parent="." instance=ExtResource("12_1s4pk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.1445, 0, 34.5207)
+
+[node name="EnemyShip3" parent="." instance=ExtResource("12_1s4pk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.23229, 0, 57.5197)
 
 [connection signal="packet_loss" from="UI" to="." method="_on_ui_packet_loss"]
 [connection signal="packet_loss" from="UI" to="Raft" method="_on_ui_packet_loss"]

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c8lea7qg4ks5s" path="res://assets/shaders/Sky/shooting_star_sampler.png" id="2_3phje"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cknnp"]
-load_path = "res://.godot/imported/Sun.png-a95f9a833c926cd83f1045ceaeba3ab7.s3tc.ctex"
 
 [sub_resource type="Curve" id="Curve_snkxs"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.124717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.738665), 0.0, 0.0, 0, 0]
@@ -66,7 +65,7 @@ sky_material = SubResource("ShaderMaterial_r752e")
 [sub_resource type="Environment" id="Environment_11a00"]
 background_mode = 2
 sky = SubResource("Sky_abajw")
-tonemap_mode = 2
+tonemap_mode = 3
 glow_enabled = true
 adjustment_enabled = true
 adjustment_saturation = 1.5

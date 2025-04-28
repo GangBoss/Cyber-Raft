@@ -6,6 +6,8 @@ extends Node3D
 @onready var grain: Sprite2D = %Grain
 @onready var glitch: BackBufferCopy = $Effects/BackBufferCopy3
 
+
+
 var boxes: Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -60,10 +62,9 @@ func _on_ui_timeout() -> void:
 	await get_tree().create_timer(1.0).timeout
 	raft.set_forward_speed(4.5)
 
-
 func _on_next_level_trigger_body_entered(body: Node3D) -> void:
 	grain.visible = true
-	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 
 
 func _on_raft_got_damage() -> void:

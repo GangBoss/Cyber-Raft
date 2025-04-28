@@ -31,7 +31,7 @@ var submerged := false
 var box_count = 0
 
 @export var box_node : Resource
-@onready var box_placeholders = $BoxPlaceholders.get_children()
+@onready var box_placeholders: = $BoxPlaceholders.get_children()
 var cubes : Array[Node3D] 
 signal cubes_changed(cubes: int)
 
@@ -73,19 +73,20 @@ func add_packet(name: String, pos: Vector3) -> void:
 	box.position = pos
 
 func add_cubes(count: int) -> void:
-	remove_cubes()
-	
+	#remove_cubes()
+	print("add coubes")
 	var b_l = box_placeholders.size()
 	for i in range(count):
 		var level = i / b_l
 		var b = box_placeholders[i%b_l]
-		add_packet(str(i), b.global_position + Vector3.UP * .1 * level)
+		add_packet(str(i), b.position + Vector3.UP * .1 * level)
 
 
 func _ready() -> void:
+	print("rdy")
 	bar.max_value = max_health
 	bar.value = max_health
-	add_cubes(40)
+	add_cubes(20)
 
 
 func _player_movement_and_rotation() -> void:
@@ -98,9 +99,9 @@ func _player_movement_and_rotation() -> void:
 	if Input.is_action_pressed("ui_left"):
 		direction_impact.x += 1
 	if Input.is_action_pressed("ui_down"):
-		direction_impact.z -= 0.3
+		direction_impact.z -= 1
 	if Input.is_action_pressed("ui_up"):
-		direction_impact.z += 0.3
+		direction_impact.z += 1
 	
 	# cheap player rotation
 	#if input_dir != Vector2(0, 0):
@@ -160,7 +161,6 @@ func _physics_process(delta: float) -> void:
 		velocity += vertical_velocity
 		var drag_velocity = -velocity.y * water_drag * delta
 		velocity += Vector3.UP * drag_velocity
-	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -169,7 +169,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_camera_handle()
-
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

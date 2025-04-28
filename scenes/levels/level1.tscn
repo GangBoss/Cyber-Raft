@@ -107,7 +107,7 @@
 [ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="102_b1buk"]
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="103_fm2x2"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="104_0hyvm"]
-[ext_resource type="Script" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
+[ext_resource type="Script" uid="uid://bnbfr3fo8nlyc" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
 [ext_resource type="PackedScene" uid="uid://xbw1tt68ugmy" path="res://scenes/enemys/EnemyShip.tscn" id="108_0hyvm"]
 [ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="110_knu8n"]
 [ext_resource type="PackedScene" uid="uid://dow1gob53q0wu" path="res://scenes/ui/ui.tscn" id="111_ll3gq"]
@@ -282,7 +282,7 @@ text = "0
 font = ExtResource("102_aq7hc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fm2x2"]
-size = Vector3(143.89, 1, 767.569)
+size = Vector3(143.89, 12.1407, 2075.38)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uy6wj"]
 size = Vector3(0.414795, 1, 38.7562)
@@ -419,7 +419,7 @@ box_node = ExtResource("100_4u2mj")
 delete_box_damage = 5
 
 [node name="Particles" type="GPUParticles3D" parent="Raft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.788813, 6.70762, -0.044642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.493118, 5.92001, -7.06189)
 cast_shadow = 0
 amount = 120
 lifetime = 5.0
@@ -443,12 +443,12 @@ process_material = SubResource("ParticleProcessMaterial_ll3gq")
 draw_pass_1 = SubResource("TextMesh_qc1mu")
 
 [node name="DeleteCube" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.57317, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91566, -2.08385, 0)
 collision_mask = 4
 script = ExtResource("107_aq7hc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeleteCube"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93863, 0, -311.931)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91794, 7.915, 313.079)
 shape = SubResource("BoxShape3D_fm2x2")
 
 [node name="Enenmyes" type="Node3D" parent="."]
@@ -544,7 +544,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.70
 [node name="EnemyShip30" parent="Enenmyes" instance=ExtResource("108_0hyvm")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -18.7059, 14.5178, -618.103)
 
-[node name="Stations" type="Node" parent="."]
+[node name="Stations" type="Node3D" parent="."]
 
 [node name="Station1" type="MeshInstance3D" parent="Stations"]
 transform = Transform3D(-0.0993028, 0, 4.99901, 0, 5, 0, -4.99901, 0, -0.0993028, 4.25552, 14.2584, -384.233)
@@ -641,8 +641,13 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
+[connection signal="cubes_changed" from="Raft" to="." method="_on_raft_cubes_changed"]
 [connection signal="cubes_changed" from="Raft" to="Raft" method="_on_cubes_changed"]
+[connection signal="death" from="Raft" to="." method="_on_raft_death"]
+[connection signal="got_damage" from="Raft" to="." method="_on_raft_got_damage"]
 [connection signal="body_entered" from="DeleteCube" to="DeleteCube" method="_on_body_entered"]
+[connection signal="cube_deleted" from="DeleteCube" to="Raft" method="_on_delete_cube_cube_deleted"]
 [connection signal="body_entered" from="Stations/Station1/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Stations/Station2/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Stations/Station3/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="UI" to="." method="_on_ui_timeout"]

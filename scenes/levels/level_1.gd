@@ -3,7 +3,6 @@ extends Node3D
 @onready var ui: Control = $UI
 @onready var raft: CharacterBody3D = %Raft
 @onready var music_player: AudioStreamPlayer = $Env/AudioStreamPlayer
-@onready var grain: Sprite2D = %Grain
 @onready var glitch: BackBufferCopy = $Effects/BackBufferCopy3
 
 var boxes: Array = []
@@ -59,12 +58,6 @@ func _on_ui_timeout() -> void:
 	raft.move_camera_on_raft()
 	await get_tree().create_timer(1.0).timeout
 	raft.set_forward_speed(4.5)
-
-
-func _on_next_level_trigger_body_entered(body: Node3D) -> void:
-	grain.visible = true
-	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
-
 
 func _on_raft_got_damage() -> void:
 	glitch.visible = true
