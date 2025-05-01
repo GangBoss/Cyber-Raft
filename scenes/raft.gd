@@ -37,7 +37,7 @@ signal cubes_changed(cubes: int)
 
 
 @export var max_health = 100
-@export var delete_box_damage = 1
+@export var delete_box_damage = 3
 @export var hit_damage = 5
 signal death()
 signal got_damage()

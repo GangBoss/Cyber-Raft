@@ -84,6 +84,8 @@ func show_red_text(time: float = 2.0):
 	tween_in.tween_property(red_text, "modulate:a", 1.0, 1.0) \
 		.set_ease(Tween.EASE_IN)
 	
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(time).timeout
 	
 	var tween_out = create_tween()

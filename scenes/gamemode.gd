@@ -49,6 +49,8 @@ func _on_raft_death() -> void:
 func _on_ui_packet_loss() -> void:
 	glitch.visible = true
 	raft.decrease_health()
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(0.2).timeout
 	glitch.visible = false
 

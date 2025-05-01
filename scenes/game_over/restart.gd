@@ -12,7 +12,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _input(event):
 	if event is InputEventMouseButton and can_be_ended:
-		%Grain.visible = true
 		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 
 

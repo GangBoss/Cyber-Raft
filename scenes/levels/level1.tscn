@@ -107,7 +107,7 @@
 [ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="102_b1buk"]
 [ext_resource type="Shader" uid="uid://22mqvwmpt00y" path="res://assets/shaders/Screen Shaders/TV.gdshader" id="103_fm2x2"]
 [ext_resource type="Shader" uid="uid://dwmib0se4f3ba" path="res://assets/shaders/Screen Shaders/PSX.gdshader" id="104_0hyvm"]
-[ext_resource type="Script" uid="uid://bnbfr3fo8nlyc" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
+[ext_resource type="Script" path="res://scenes/delete_cube.gd" id="107_aq7hc"]
 [ext_resource type="PackedScene" uid="uid://xbw1tt68ugmy" path="res://scenes/enemys/EnemyShip.tscn" id="108_0hyvm"]
 [ext_resource type="Texture2D" uid="uid://cppoiidxqi4xn" path="res://assets/textures/grain.png" id="110_knu8n"]
 [ext_resource type="PackedScene" uid="uid://dow1gob53q0wu" path="res://scenes/ui/ui.tscn" id="111_ll3gq"]

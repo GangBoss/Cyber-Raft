@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://c66qkqgcdh1m1"]
+
+[ext_resource type="Shader" uid="uid://b6ucqwthdvald" path="res://assets/models/water/water.gdshader" id="1_s2ay1"]
+[ext_resource type="Texture2D" uid="uid://bsji3udgfak3l" path="res://assets/models/water/water_tex.png" id="2_g5gx3"]
+[ext_resource type="Script" uid="uid://kjvi0crkt0jw" path="res://assets/models/water/water.gd" id="3_rt5ba"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dcmoc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qmoj4"]
+seamless = true
+noise = SubResource("FastNoiseLite_dcmoc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qi1wl"]
+render_priority = 0
+shader = ExtResource("1_s2ay1")
+shader_parameter/albedo = Color(0.304256, 0.415441, 0.510123, 1)
+shader_parameter/water_texture1 = ExtResource("2_g5gx3")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_qmoj4")
+shader_parameter/scroll_speed1 = Vector2(0.02, 0)
+shader_parameter/scroll_speed2 = Vector2(-0.03, 0)
+shader_parameter/blend_factor = 0.5
+shader_parameter/scale1 = Vector2(2, 2)
+shader_parameter/scale2 = Vector2(2, 2)
+shader_parameter/wave_strength = 0.2
+shader_parameter/wave_scale = 0.02
+shader_parameter/pixelation_level = 512
+shader_parameter/FoamSize = 0.5
+shader_parameter/WaterOpacity = 1.0
+shader_parameter/FoamGlowIntensity = 1.0
+shader_parameter/glowColor = Color(0, 1, 0.94902, 1)
+shader_parameter/wave_time = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aq2ne"]
+material = SubResource("ShaderMaterial_qi1wl")
+size = Vector2(200, 200)
+subdivide_width = 100
+subdivide_depth = 100
+
+[node name="Water" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_aq2ne")
+script = ExtResource("3_rt5ba")

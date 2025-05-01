@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://7dfrdfrl1mr4" path="res://assets/shaders/Sky/Cycle.tscn" id="13_7gny6"]
 [ext_resource type="PackedScene" uid="uid://djihs8pbmttor" path="res://scenes/box.tscn" id="14_2aecg"]
 [ext_resource type="Shader" uid="uid://b5xi6ip6wyirv" path="res://scenes/game_over/glitch.gdshader" id="15_1s4pk"]
-[ext_resource type="Script" uid="uid://bnbfr3fo8nlyc" path="res://scenes/delete_cube.gd" id="15_6dial"]
+[ext_resource type="Script" path="res://scenes/delete_cube.gd" id="15_6dial"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1s4pk"]
 size = Vector3(2.07172, 1, 0.270081)
